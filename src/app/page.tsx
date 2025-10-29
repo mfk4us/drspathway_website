@@ -18,7 +18,7 @@ export default function Home() {
       <header className="site-header" role="banner">
         <div className="shell">
           <a href="#home" className="brand" aria-label="Drs Pathway — Home">
-            <span className="logo">DP</span>
+            <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
             <span className="brand-text">Drs Pathway</span>
           </a>
           <nav className="nav" aria-label="Primary">
@@ -50,9 +50,24 @@ export default function Home() {
               <a href="#contact" className="btn btn--ghost">Book consultation</a>
             </div>
             <div className="social">
-              <a href={IG} target="_blank" rel="noreferrer">Instagram</a>
-              <a href={FB} target="_blank" rel="noreferrer">Facebook</a>
-              <a href={LI} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href={IG} target="_blank" rel="noreferrer" aria-label="Instagram (opens in a new tab)">
+                <span className="sr-only">Instagram</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
+                </svg>
+              </a>
+              <a href={FB} target="_blank" rel="noreferrer" aria-label="Facebook (opens in a new tab)">
+                <span className="sr-only">Facebook</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.7-1.5H17V5.1C16.5 5 15.3 5 14 5c-2.4 0-4 1.4-4 4v2.9H7.5v3H10v8z"/>
+                </svg>
+              </a>
+              <a href={LI} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <span className="sr-only">LinkedIn</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7.5 0h4.8v2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V22h-5v-6.4c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V22h-5V8z"/>
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -307,22 +322,22 @@ export default function Home() {
           <div>
             <h2 id="contact-title" className="invert">Contact Us</h2>
             <p className="lead invert">We’ll get back to you within 24 hours.</p>
-            <ul className="contact-lines">
-              <li>🌐 <a className="link invert" href="https://drspathway.com" target="_blank" rel="noreferrer">drspathway.com</a></li>
-              <li>💬 <a className="link invert" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp us</a></li>
-              <li>✉️ <a className="link invert" href="mailto:info@drspathway.com">info@drspathway.com</a></li>
-              <li className="social">
-                <a className="link invert" href={IG} target="_blank" rel="noreferrer">Instagram</a>
-                <a className="link invert" href={FB} target="_blank" rel="noreferrer">Facebook</a>
-                <a className="link invert" href={LI} target="_blank" rel="noreferrer">LinkedIn</a>
-              </li>
-              <li className="muted invert small">
-                We do not disclose a physical location. Services are provided digitally.
-              </li>
-              <li className="muted invert small">
-                “Dr’s Pathway provides professional guidance and documentation assistance. It is not a recruitment or licensing agency.”
-              </li>
-            </ul>
+            <div className="contact-ctas">
+              <div className="badges">
+                <span className="badge">Secure & Confidential</span>
+                <span className="badge">Response in 24h</span>
+              </div>
+              <div className="cta-row">
+                <a className="btn btn--primary" href={WHATSAPP} target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+                <a className="btn btn--ghost" href="mailto:info@drspathway.com">Email Us</a>
+              </div>
+              <p className="muted invert small" style={{marginTop:12}}>
+                We operate fully online. No physical location disclosed.
+              </p>
+              <p className="muted invert small">
+                Dr’s Pathway provides professional guidance and documentation assistance (not a recruitment or licensing agency).
+              </p>
+            </div>
           </div>
 
           <form className="card form" onSubmit={(e) => { e.preventDefault(); alert("Thank you! We’ll contact you shortly."); }}>
@@ -360,20 +375,104 @@ export default function Home() {
 
       {/* ===== Footer ===== */}
       <footer className="site-footer" role="contentinfo">
-        <div className="shell">
-          <div>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
-          <nav className="footer-nav" aria-label="Footer">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#packages">Packages</a>
-            <a href="#contact">Contact</a>
+        <div className="shell footer-grid">
+          <div className="f-col brand-col">
+            <a href="#home" className="brand" aria-label="Drs Pathway — Home">
+              <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
+              <span className="brand-text">Drs Pathway</span>
+            </a>
+            <p className="muted small">Your trusted guide to medical registration in Saudi Arabia.</p>
+            <div className="f-social">
+              <a href={IG} target="_blank" rel="noreferrer" aria-label="Instagram (opens in a new tab)">
+                <span className="sr-only">Instagram</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
+                </svg>
+              </a>
+              <a href={FB} target="_blank" rel="noreferrer" aria-label="Facebook (opens in a new tab)">
+                <span className="sr-only">Facebook</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.7-1.5H17V5.1C16.5 5 15.3 5 14 5c-2.4 0-4 1.4-4 4v2.9H7.5v3H10v8z"/>
+                </svg>
+              </a>
+              <a href={LI} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <span className="sr-only">LinkedIn</span>
+                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7.5 0h4.8v2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V22h-5v-6.4c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V22h-5V8z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <nav className="f-col" aria-label="Footer — Explore">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#packages">Packages</a></li>
+              <li><a href="#experts">Experts</a></li>
+              <li><a href="#blog">Insights</a></li>
+            </ul>
           </nav>
+
+          <nav className="f-col" aria-label="Footer — Services">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Dataflow Guidance</a></li>
+              <li><a href="#services">SCFHS (Mumaris+)</a></li>
+              <li><a href="#services">Prometric Support</a></li>
+              <li><a href="#services">Document Review</a></li>
+              <li><a href="#services">CHSI (Soon)</a></li>
+            </ul>
+          </nav>
+
+          <div className="f-col cta-col">
+            <h4>Start your pathway</h4>
+            <p className="muted small">Tell us your profession and current stage — we’ll guide you step by step.</p>
+            <div className="cta-row">
+              <a className="btn btn--primary" href="#contact">Get Started</a>
+              <a className="btn btn--ghost" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <div className="shell footer-bottom-row">
+            <div className="muted small">© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
+            <div className="muted small">Guidance & documentation assistance — not a recruitment or licensing agency.</div>
+          </div>
         </div>
       </footer>
 
       {/* ===== Styles ===== */}
       <style jsx global>{`
+        /* Accessible screen-reader-only text */
+        .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+        /* Social icon styling */
+        .icon{ width:22px; height:22px; display:block; fill:#cfe0ff; transition: fill .2s ease, transform .12s ease; }
+        .social a, .f-social a{ display:inline-grid; place-items:center; width:36px; height:36px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); }
+        .social a:hover .icon, .f-social a:hover .icon{ fill:#ffffff; }
+        .social a:hover, .f-social a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.1); }
+        .social{ gap:.6rem; }
+        .f-social{ gap:.6rem; }
+        /* Contact CTAs */
+        .contact-ctas .badges{ display:flex; gap:.5rem; flex-wrap:wrap; margin: 6px 0 10px; }
+        .badge{ background: rgba(255,255,255,.1); border:1px solid var(--border); color:#e8f2ff; padding:.3rem .6rem; border-radius:999px; font-size:.72rem; font-weight:800; }
+
+        /* Footer */
+        .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
+        .footer-grid{ display:grid; grid-template-columns:1fr; gap:22px; padding:28px 0; }
+        @media(min-width: 900px){ .footer-grid{ grid-template-columns: 1.2fr .8fr .8fr 1fr; } }
+        .f-col h4{ margin:0 0 .6rem 0; font-weight:900; }
+        .f-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:.4rem; }
+        .f-col a{ color:#b8c8e6; }
+        .f-col a:hover{ color:#fff; }
+        .brand-col .brand{ padding:0; }
+        .f-social{ display:flex; gap:10px; margin-top:10px; }
+
+        .footer-bottom{ border-top:1px solid var(--border); background:#09101e; }
+        .footer-bottom-row{ display:flex; gap:12px; align-items:center; justify-content:space-between; padding:12px 0; flex-wrap:wrap; }
         :root{
           --bg:#0B1220;           /* page background */
           --surface:#0E1626;      /* headers/sections */
@@ -412,13 +511,8 @@ export default function Home() {
           border-bottom:1px solid var(--border);
         }
         .brand{ display:flex; align-items:center; gap:.6rem; padding:.8rem 0; }
-        .logo{
-          width:40px; height:40px; border-radius:10px;
-          display:grid; place-items:center;
-          background:linear-gradient(135deg, var(--blue-700), var(--blue-500));
-          color:white; font-weight:900;
-          box-shadow: var(--shadow);
-        }
+        .logo{ display:none; }
+        .logo-img{ width:40px; height:40px; border-radius:10px; object-fit:contain; display:block; }
         .brand-text{ font-weight:900; letter-spacing:.2px; }
 
         .nav{ display:flex; align-items:center; gap:1rem; }
