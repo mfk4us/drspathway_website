@@ -226,3 +226,38 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal.show { opacity: 1; transform: none; transition: none; }
 }
+/* ===== Section surfaces & cards (slightly darker after hero) ===== */
+@layer components {
+  .section { background: var(--color-surface); }
+
+  /* Tinted blue surface so the page isn’t plain white */
+  .section-alt {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 44, 88, 0.055) 0%,
+      rgba(2, 44, 88, 0.035) 100%
+    );
+  }
+
+  /* Dark band for About section */
+  .section-dark {
+    background: linear-gradient(180deg, var(--color-brand-900), var(--color-brand-800));
+    color: #fff;
+  }
+
+  /* Soft card that adapts well on both light & dark */
+  .card {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  .divider { border-top: 1px solid var(--color-border); }
+
+  /* Chips that work on dark backgrounds */
+  .chip-invert {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+}
