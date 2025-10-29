@@ -1,4 +1,5 @@
-"use client";
+ "use client";
+import { useState } from "react";
 /* Fresh, Tailwind-free single-file homepage for Drs Pathway
    - Pure CSS (styled-jsx) + semantic HTML
    - Modern blue/teal palette
@@ -7,6 +8,7 @@
 */
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const WHATSAPP = "https://wa.me/966598172331"; // TODO: put real number
   const IG = "https://www.instagram.com/drspathway?igsh=bWJsdmozeWZwNWh5";
   const FB = "https://www.facebook.com/share/14Qt2FGdB9b/";
@@ -16,19 +18,29 @@ export default function Home() {
     <main>
       {/* ===== Header ===== */}
       <header className="site-header" role="banner">
-        <div className="shell">
+        <div className="shell header-row">
           <a href="#home" className="brand" aria-label="Drs Pathway — Home">
             <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
             <span className="brand-text">Drs Pathway</span>
           </a>
-          <nav className="nav" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#packages">Packages</a>
-            <a href="#experts">Experts</a>
-            <a href="#process">How it works</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact" className="btn btn--primary">Get started</a>
+
+          <button
+            className="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+          </button>
+
+          <nav className={`nav ${menuOpen ? "open" : ""}`} aria-label="Primary">
+            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
+            <a href="#packages" onClick={() => setMenuOpen(false)}>Packages</a>
+            <a href="#experts" onClick={() => setMenuOpen(false)}>Experts</a>
+            <a href="#process" onClick={() => setMenuOpen(false)}>How it works</a>
+            <a href="#blog" onClick={() => setMenuOpen(false)}>Blog</a>
+            <a href="#contact" className="btn btn--primary" onClick={() => setMenuOpen(false)}>Get started</a>
           </nav>
         </div>
       </header>
@@ -37,7 +49,7 @@ export default function Home() {
       <section id="home" className="hero" role="region" aria-labelledby="hero-title">
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Medical Licensing • Saudi Arabia</p>
+            <p className="eyebrow">Guiding Your Medical Licensing Journey</p>
             <h1 id="hero-title" className="display">
               Your trusted guide to medical registration in Saudi Arabia
             </h1>
@@ -505,19 +517,33 @@ export default function Home() {
 
         /* Header */
         .site-header{
-          position:sticky; top:0; z-index:50;
-          background:rgba(10,16,32,0.6);
+          position:sticky; top:0; z-index:100;
+          background:rgba(10,16,32,0.55);
           backdrop-filter: blur(10px);
           border-bottom:1px solid var(--border);
         }
-        .brand{ display:flex; align-items:center; gap:.6rem; padding:.8rem 0; }
-        .logo{ display:none; }
+        .header-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:.6rem 0; }
+        .brand{ display:flex; align-items:center; gap:.65rem; }
         .logo-img{ width:40px; height:40px; border-radius:10px; object-fit:contain; display:block; }
         .brand-text{ font-weight:900; letter-spacing:.2px; }
 
-        .nav{ display:flex; align-items:center; gap:1rem; }
-        .nav a{ padding:.5rem .6rem; color:var(--muted); }
-        .nav a:hover{ color:#fff; }
+        .nav-toggle{ display:inline-grid; place-items:center; width:40px; height:40px; border-radius:10px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:#e6eeff; }
+        .nav-toggle svg{ width:22px; height:22px; fill:currentColor; }
+
+        .nav{ position:fixed; inset:64px 0 auto 0; /* below sticky header */
+              display:none; flex-direction:column; gap:.5rem; padding:12px 20px 16px; 
+              background:#0B1220; border-bottom:1px solid var(--border); }
+        .nav.open{ display:flex; }
+        .nav a{ padding:.65rem .6rem; color:var(--muted); border-radius:10px; }
+        .nav a:hover{ color:#fff; background:rgba(255,255,255,.06); }
+        .nav .btn{ margin-top:6px; }
+
+        @media(min-width: 980px){
+          .nav-toggle{ display:none; }
+          .nav{ position:static; display:flex !important; flex-direction:row; align-items:center; gap:1rem; background:transparent; border:0; padding:0; }
+          .nav .btn{ margin-top:0; }
+          .nav a{ background:transparent; }
+        }
         .btn{
           display:inline-flex; align-items:center; justify-content:center;
           padding:.8rem 1.1rem; border-radius:12px; font-weight:800; letter-spacing:.2px;
