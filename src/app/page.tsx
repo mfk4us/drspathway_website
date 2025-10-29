@@ -77,7 +77,7 @@ export default function Home() {
             </h1>
             <p className="lead">
               Step‑by‑step support for healthcare professionals navigating <b>Dataflow</b>,{" "}
-              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>CHSI</b> (coming soon).
+              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>China Higher Education Student Information (CHSI)</b> — coming soon.
             </p>
             <div className="cta-row">
               <a href="#packages" className="btn btn--primary">View packages</a>
@@ -89,14 +89,14 @@ export default function Home() {
             <h3>Quick intro</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
-              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>CHSI</b> (soon).
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI)</b> — coming soon.
               Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
               <li>Licensing Guidance</li>
               <li>Exam & Career Support</li>
               <li>Document Review</li>
-              <li>CHSI (soon)</li>
+              <li>China Higher Education Student Information (CHSI) — coming soon</li>
             </ul>
           </aside>
         </div>
@@ -163,9 +163,9 @@ export default function Home() {
                   <path d="M12 3c3 3 3 15 0 18c-3-3-3-15 0-18z"/>
                   <path d="M15 8v4h3"/>
                 </svg>
-                <span>CHSI Verification (Soon)</span>
+                <span>China Higher Education Student Information (CHSI) — coming soon</span>
               </h3>
-              <p>Guidance for Chinese graduates completing CHSI verification.</p>
+              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) verification.</p>
             </article>
             <article className="card reveal">
               <h3 className="icon-title">
@@ -196,6 +196,66 @@ export default function Home() {
               </h3>
               <p>Book a one‑to‑one consultation and we’ll map your exact pathway.</p>
               <a href="#contact" className="btn btn--primary">Book consultation</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* ===== Packages ===== */}
+      <section id="packages" className="band band--light" aria-labelledby="packages-title">
+        <div className="shell">
+          <h2 id="packages-title">Packages & Pricing</h2>
+          <div className="pricing">
+            <article className="card pricing-card reveal">
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="14" height="14" rx="2"/>
+                <rect x="7" y="7" width="14" height="14" rx="2"/>
+              </svg>
+              <h3>Basic</h3>
+              <p className="muted">Dataflow + Mumaris+ registration guidance</p>
+              <div className="price">SAR 250–400</div>
+              <a href="#contact" className="btn btn--primary">Get started</a>
+            </article>
+            <article className="card pricing-card featured reveal">
+              <div className="flag">Most Popular</div>
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
+                <path d="M12 9l1.2 2.4 2.6.4-1.9 1.9.5 2.7L12 15.6l-2.4 1.8.5-2.7-1.9-1.9 2.6-.4L12 9z"/>
+              </svg>
+              <h3>Standard</h3>
+              <p className="muted">Basic + Prometric preparation</p>
+              <div className="price">SAR 500–700</div>
+              <a href="#contact" className="btn btn--primary">Choose Standard</a>
+            </article>
+            <article className="card pricing-card reveal">
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 8l4 3 5-6 5 6 4-3v9H3V8z"/>
+                <path d="M3 17h18"/>
+              </svg>
+              <h3>Premium</h3>
+              <p className="muted">Full support + Document review + Mentorship</p>
+              <div className="price">SAR 800–1,200</div>
+              <a href="#contact" className="btn btn--primary">Go Premium</a>
+            </article>
+          </div>
+
+          <div className="cards-2 mt">
+            <article className="card reveal">
+              <h4>Add‑ons / Hourly</h4>
+              <ul className="list">
+                <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
+                <li><b>Mock test &amp; exam review</b>: SAR 100 / session</li>
+              </ul>
+            </article>
+            <article className="card reveal">
+              <h4>Payments Accepted</h4>
+              <ul className="list">
+                <li>STC Pay</li>
+                <li>Bank Transfer</li>
+                <li>PayPal (international)</li>
+              </ul>
             </article>
           </div>
         </div>
@@ -265,64 +325,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Packages ===== */}
-      <section id="packages" className="band band--light" aria-labelledby="packages-title">
-        <div className="shell">
-          <h2 id="packages-title">Packages & Pricing</h2>
-          <div className="pricing">
-            <article className="card pricing-card reveal">
-              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="14" height="14" rx="2"/>
-                <rect x="7" y="7" width="14" height="14" rx="2"/>
-              </svg>
-              <h3>Basic</h3>
-              <p className="muted">Dataflow + Mumaris+ registration guidance</p>
-              <div className="price">SAR 250–400</div>
-              <a href="#contact" className="btn btn--primary">Get started</a>
-            </article>
-            <article className="card pricing-card featured reveal">
-              <div className="flag">Most Popular</div>
-              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
-                <path d="M12 9l1.2 2.4 2.6.4-1.9 1.9.5 2.7L12 15.6l-2.4 1.8.5-2.7-1.9-1.9 2.6-.4L12 9z"/>
-              </svg>
-              <h3>Standard</h3>
-              <p className="muted">Basic + Prometric preparation</p>
-              <div className="price">SAR 500–700</div>
-              <a href="#contact" className="btn btn--primary">Choose Standard</a>
-            </article>
-            <article className="card pricing-card reveal">
-              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 8l4 3 5-6 5 6 4-3v9H3V8z"/>
-                <path d="M3 17h18"/>
-              </svg>
-              <h3>Premium</h3>
-              <p className="muted">Full support + Document review + Mentorship</p>
-              <div className="price">SAR 800–1,200</div>
-              <a href="#contact" className="btn btn--primary">Go Premium</a>
-            </article>
-          </div>
-
-          <div className="cards-2 mt">
-            <article className="card reveal">
-              <h4>Add‑ons / Hourly</h4>
-              <ul className="list">
-                <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
-                <li><b>Mock test &amp; exam review</b>: SAR 100 / session</li>
-              </ul>
-            </article>
-            <article className="card reveal">
-              <h4>Payments Accepted</h4>
-              <ul className="list">
-                <li>STC Pay</li>
-                <li>Bank Transfer</li>
-                <li>PayPal (international)</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
       {/* ===== Experts ===== */}
       <section id="experts" className="band band--brand" aria-labelledby="experts-title">
         <div className="shell">
@@ -349,6 +351,20 @@ export default function Home() {
       <section id="testimonials" className="band band--light" aria-labelledby="testimonials-title">
         <div className="shell">
           <h2 id="testimonials-title">Success Stories</h2>
+          <div className="stats reveal">
+            <div className="stat">
+              <div className="num">180+</div>
+              <div className="label">Successful registrations</div>
+            </div>
+            <div className="stat">
+              <div className="num">95%</div>
+              <div className="label">Client satisfaction</div>
+            </div>
+            <div className="stat">
+              <div className="num">350+</div>
+              <div className="label">One‑to‑one consultations</div>
+            </div>
+          </div>
           <div className="cards-2">
             <blockquote className="card quote reveal">
               <p>“Thanks to Dr’s Pathway, I completed my SCFHS registration smoothly and started my practice in Saudi Arabia. Highly recommend!”</p>
@@ -376,8 +392,7 @@ export default function Home() {
             <p>
               Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — trained at <b>Nishtar Hospital, Multan</b>, with further experience at
               <b> Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare
-              professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>CHSI</b>
-              support for Chinese graduates is launching soon.
+              professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>China Higher Education Student Information (CHSI)</b> support for Chinese graduates is launching soon.
             </p>
 
             <div className="badge-row">
@@ -421,6 +436,70 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ===== FAQs ===== */}
+      <section id="faqs" className="band band--light" aria-labelledby="faqs-title">
+        <div className="shell">
+          <h2 id="faqs-title">Frequently Asked Questions</h2>
+          <p className="muted" style={{marginTop: 4}}>Quick answers to common questions about licensing, timelines, and our services.</p>
+
+          <div className="faqs">
+            <details className="faq reveal">
+              <summary>
+                How long does the Saudi licensing process usually take?
+              </summary>
+              <div className="answer">
+                Timelines vary by profession and document readiness. Typical ranges are <b>6–10 weeks</b> end‑to‑end if documents are correct. Delays usually come from Dataflow verification or missing attestations. We help you prevent those delays with checklists and pre‑review.
+              </div>
+            </details>
+
+            <details className="faq reveal">
+              <summary>
+                What documents do I need for Dataflow and SCFHS Mumaris+?
+              </summary>
+              <div className="answer">
+                Core items include <b>passport</b>, <b>degree certificates</b>, <b>transcripts</b>, <b>professional license</b> (if applicable), <b>experience letters</b>, and <b>valid ID</b>. We give you a tailored checklist and review each item before submission.
+              </div>
+            </details>
+
+            <details className="faq reveal">
+              <summary>
+                Do you offer one‑to‑one document review only?
+              </summary>
+              <div className="answer">
+                Yes. Our <b>One‑to‑One Document Review</b> is available as a stand‑alone hourly service (SAR 100–150/hr) and is included in the Premium package.
+              </div>
+            </details>
+
+            <details className="faq reveal">
+              <summary>
+                Can you guarantee my SCFHS approval?
+              </summary>
+              <div className="answer">
+                No consultancy can guarantee approval. We provide expert guidance, complete checklists, and proactive follow‑ups to maximize your chance of success.
+              </div>
+            </details>
+
+            <details className="faq reveal">
+              <summary>
+                Do you help with Prometric exam preparation?
+              </summary>
+              <div className="answer">
+                Yes. We offer guidance on exam registration, study plans, and <b>mock test & exam review</b> sessions to get you exam‑ready.
+              </div>
+            </details>
+
+            <details className="faq reveal">
+              <summary>
+                What about Chinese graduates—do you support CHSI?
+              </summary>
+              <div className="answer">
+                <b>China Higher Education Student Information (CHSI)</b> support is coming soon. We’ll publish instructions and provide one‑to‑one assistance once live.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
 
       {/* ===== Contact ===== */}
       <section id="contact" className="band band--brand" aria-labelledby="contact-title">
@@ -551,6 +630,16 @@ export default function Home() {
 
       {/* ===== Styles ===== */}
       <style>{`
+        /* FAQs */
+        .faqs{ display:grid; gap:12px; margin-top:12px; }
+        .faq{ background:#0c1529; border:1px solid var(--border); border-radius:12px; padding:0; box-shadow: var(--shadow); }
+        .faq > summary{ cursor:pointer; list-style:none; padding:14px 16px; font-weight:800; color:#eaf2ff; position:relative; }
+        .faq > summary::-webkit-details-marker{ display:none; }
+        .faq > summary::after{
+          content:""; position:absolute; right:16px; top:50%; width:10px; height:10px; border-right:2px solid #cfe0ff; border-bottom:2px solid #cfe0ff; transform: translateY(-50%) rotate(45deg); transition: transform .2s ease;
+        }
+        .faq[open] > summary::after{ transform: translateY(-50%) rotate(-135deg); }
+        .faq .answer{ padding:0 16px 16px; color:#cfe0ff; }
         /* Reveal on scroll animation */
         .reveal {
           opacity: 0;
@@ -757,7 +846,7 @@ export default function Home() {
         /* Section bands */
         .band{ padding:64px 0; background: var(--surface); border-top:1px solid var(--border); }
         .band--light{ background: #0D1527; }
-        .band--dark{ background: #0B1322; }
+        .band--dark{ background: var(--grad-hero); }
         .band--brand{ background: linear-gradient(180deg, #0B1424 0%, #0C1C34 60%, #0C2344 100%); }
 
         .grid-2{ display:grid; gap:24px; grid-template-columns:1fr; }
@@ -806,6 +895,13 @@ export default function Home() {
         /* Quotes */
         .quote p{ color:#e6eeff; }
         .quote cite{ display:block; margin-top:8px; color:var(--muted); font-style:normal; }
+
+        /* Stats (Success counters) */
+        .stats{ display:grid; grid-template-columns:1fr; gap:12px; margin: 6px 0 18px; }
+        @media(min-width: 800px){ .stats{ grid-template-columns: repeat(3, 1fr); } }
+        .stat{ background:#0b182f; border:1px solid var(--border); border-radius:12px; padding:16px; text-align:center; box-shadow: var(--shadow); }
+        .stat .num{ font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight:900; line-height:1; background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); -webkit-background-clip:text; background-clip:text; color: transparent; }
+        .stat .label{ margin-top:6px; color: var(--muted); font-weight:700; letter-spacing:.2px; }
 
         /* Steps */
         .steps{ list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
