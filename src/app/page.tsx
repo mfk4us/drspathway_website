@@ -17,6 +17,8 @@ export default function Home() {
   const headerRef = useRef<HTMLElement | null>(null);
   const navRef = useRef<HTMLElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [hasVideo, setHasVideo] = useState(false);
 
   useEffect(() => {
     // Mark the DOM ready so CSS shows content before JS as a safety
@@ -62,6 +64,42 @@ export default function Home() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    // Try to (re)start playback on mount/focus/visibility
+    const ensurePlay = () => {
+      try { v.play().catch(() => {}); } catch {}
+    };
+
+    // Hard-loop fallback in case native loop is ignored
+    const onEnded = () => {
+      try {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      } catch {}
+    };
+
+    // If the browser pauses it when tab is hidden, resume on return
+    const onVis = () => { if (!document.hidden) ensurePlay(); };
+
+    const onFocus = () => ensurePlay();
+
+    v.addEventListener('ended', onEnded);
+    document.addEventListener('visibilitychange', onVis);
+    window.addEventListener('focus', onFocus);
+
+    // Kick it once on mount
+    ensurePlay();
+
+    return () => {
+      v.removeEventListener('ended', onEnded);
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('focus', onFocus);
+    };
+  }, []);
+
   return (
     <main>
       {/* ===== Header ===== */}
@@ -96,11 +134,20 @@ export default function Home() {
       {/* ===== Hero ===== */}
       <section id="home" className="hero" role="region" aria-labelledby="hero-title">
         {/* Background video */}
-        <video className="hero-video" autoPlay muted loop playsInline>
+        <video
+          ref={videoRef}
+          className={`hero-video${hasVideo ? ' show' : ''}`}
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="auto"
+          aria-hidden="true"
+          onLoadedData={() => setHasVideo(true)}
+          onError={() => setHasVideo(false)}
+        >
           <source src="/video.mp4" type="video/mp4" />
         </video>
-        {/* Sandglass/darken overlay */}
-        <div className="hero-overlay" aria-hidden="true" />
 
         <div className="shell hero-grid">
           <div className="hero-copy reveal">
@@ -679,11 +726,6 @@ export default function Home() {
         }
         html.reveal-ready .reveal.in { opacity: 1; transform: none; }
         /* Hero background animation */
-        .hero-overlay { animation: heroBgFadeIn 1.3s cubic-bezier(.37,.01,.63,.99); }
-        @keyframes heroBgFadeIn {
-          from { opacity: 0; }
-          to { opacity: .9; }
-        }
         /* Card hover effect */
         .card {
           transition: box-shadow .3s cubic-bezier(.37,.01,.63,.99), transform .13s cubic-bezier(.37,.01,.63,.99);
@@ -837,10 +879,10 @@ export default function Home() {
         .btn--ghost:hover{ background:rgba(255,255,255,.06); }
 
         /* Hero */
-        .hero{ position:relative; background:#000; padding:72px 0; }
-        .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
-        .hero-overlay{ position:absolute; inset:0; z-index:-1; background: linear-gradient(160deg, rgba(10,18,36,.65), rgba(12,28,52,.65)), radial-gradient(1200px 600px at 15% 0%, rgba(46,124,246,.35), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(20,184,166,.28), transparent 60%); backdrop-filter: blur(6px); }
-        .hero-grid{ position:relative; display:grid; grid-template-columns:1fr; gap:24px; }
+        .hero{ position:relative; background: var(--grad-hero); padding:72px 0; overflow:hidden; }
+        .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0; transition: opacity .5s ease; pointer-events:none; }
+        .hero-video.show{ opacity:1; }
+        .hero-grid{ position:relative; z-index:2; display:grid; grid-template-columns:1fr; gap:24px; }
         @media(min-width: 900px){ .hero-grid{ grid-template-columns:1.15fr .85fr; gap:40px; } }
         .eyebrow{ color:var(--teal-400); font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem; }
         .display{ font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:.5rem 0 0; }
@@ -966,6 +1008,7 @@ export default function Home() {
           .btn--primary::before, .btn--primary:hover::before { transition: none !important; }
           .social a, .f-social a { transition: none !important; }
         }
+
       `}</style>
     </main>
   );
