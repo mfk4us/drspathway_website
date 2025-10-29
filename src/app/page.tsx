@@ -620,7 +620,7 @@ export default function Home() {
 
         <div className="footer-bottom">
           <div className="shell footer-bottom-row">
-            <div className="muted small">© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
+            <div className="muted small" suppressHydrationWarning>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
             <div className="muted small">Guidance & documentation assistance — not a recruitment or licensing agency.</div>
           </div>
         </div>
@@ -638,16 +638,14 @@ export default function Home() {
         }
         .faq[open] > summary::after{ transform: translateY(-50%) rotate(-135deg); }
         .faq .answer{ padding:0 16px 16px; color:#cfe0ff; }
-        /* Reveal on scroll animation */
-        .reveal {
+        /* Reveal on scroll animation — visible by default; animate only after JS marks html.reveal-ready */
+        .reveal { opacity: 1; transform: none; }
+        html.reveal-ready .reveal {
           opacity: 0;
           transform: translateY(40px);
           transition: opacity 0.7s cubic-bezier(.37,.01,.63,.99), transform 0.7s cubic-bezier(.37,.01,.63,.99);
         }
-        .reveal.in {
-          opacity: 1;
-          transform: none;
-        }
+        html.reveal-ready .reveal.in { opacity: 1; transform: none; }
         /* Hero background animation */
         .hero-bg {
           animation: heroBgFadeIn 1.3s cubic-bezier(.37,.01,.63,.99);
@@ -928,12 +926,10 @@ export default function Home() {
           border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(46,124,246,.25);
         }
 
-        /* Footer */
-        .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
-        .site-footer .shell{ padding:18px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-        .footer-nav{ display:flex; gap:14px; }
-        .footer-nav a{ color:#b8c8e6; }
-        .footer-nav a:hover{ color:#fff; }
+
+        @media(max-width: 520px){
+          .footer-bottom-row{ flex-direction: column; align-items: flex-start; gap:8px; }
+        }
 
         /* Reduce motion */
         @media (prefers-reduced-motion: reduce){
