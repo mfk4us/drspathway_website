@@ -1,359 +1,570 @@
 "use client";
-
-import { useEffect } from "react";
-
-function Num({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="w-9 h-9 rounded-full grid place-items-center font-semibold text-brand"
-      style={{ background: "var(--color-brand-50)", border: "1px solid var(--color-brand-200)" }}
-    >
-      {children}
-    </div>
-  );
-}
+/* Fresh, Tailwind-free single-file homepage for Drs Pathway
+   - Pure CSS (styled-jsx) + semantic HTML
+   - Modern blue/teal palette
+   - Responsive, accessible, fast
+   - Anchored sections: Home, About, Services, Packages, Experts, Testimonials, Process, Blog, Contact
+*/
 
 export default function Home() {
-  const WHATSAPP = "https://wa.me/9665XXXXXXXX"; // TODO: replace with your real number
+  const WHATSAPP = "https://wa.me/966598172331"; // TODO: put real number
   const IG = "https://www.instagram.com/drspathway?igsh=bWJsdmozeWZwNWh5";
   const FB = "https://www.facebook.com/share/14Qt2FGdB9b/";
   const LI = "https://www.linkedin.com/company/drs-pathway";
 
-  // Reveal-in-on-scroll
-  useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>(".reveal");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add("show");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
   return (
     <main>
-      {/* Header */}
-      <header
-        className="sticky top-0 z-50 bg-surface/90 backdrop-blur border-b"
-        style={{ borderColor: "var(--color-border)" }}
-      >
-        <div className="max-w-[1200px] mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Drs Pathway logo" className="h-10 w-10 object-contain" />
-            <span className="font-extrabold text-2xl tracking-tight text-ink">Drs Pathway</span>
+      {/* ===== Header ===== */}
+      <header className="site-header" role="banner">
+        <div className="shell">
+          <a href="#home" className="brand" aria-label="Drs Pathway — Home">
+            <span className="logo">DP</span>
+            <span className="brand-text">Drs Pathway</span>
           </a>
-          <nav className="hidden md:flex items-center gap-6 text-ink/80">
-            <a href="#services" className="hover:text-brand">Services</a>
-            <a href="#docreview" className="hover:text-brand">Doc&nbsp;Review</a>
-            <a href="#pricing" className="hover:text-brand">Packages</a>
-            <a href="#process" className="hover:text-brand">Process</a>
-            <a href="#about" className="hover:text-brand">About</a>
-            <a href="#contact" className="btn btn-primary">Book consultation</a>
+          <nav className="nav" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#packages">Packages</a>
+            <a href="#experts">Experts</a>
+            <a href="#process">How it works</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact" className="btn btn--primary">Get started</a>
           </nav>
         </div>
       </header>
 
-      {/* Hero */}
-      <section id="home" className="bg-hero text-white">
-        <div className="max-w-[1200px] mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-          <div className="reveal">
-            <span className="chip">Professional medical licensing guidance (Saudi Arabia)</span>
-            <h1 className="mt-4 text-4xl md:text-6xl/tight font-extrabold">
-              Your Trusted Guide to SCFHS, DataFlow &amp; Prometric
+      {/* ===== Hero ===== */}
+      <section id="home" className="hero" role="region" aria-labelledby="hero-title">
+        <div className="shell hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">Medical Licensing • Saudi Arabia</p>
+            <h1 id="hero-title" className="display">
+              Your trusted guide to medical registration in Saudi Arabia
             </h1>
-            <p className="mt-4 text-white/85 md:text-lg">
-              Drs Pathway is a paid consultancy helping healthcare professionals complete{" "}
-              <b>Dataflow</b>, <b>SCFHS (Mumaris+)</b>, and <b>Prometric</b> steps with clarity and confidence.
-              <br />
-              <span className="inline-block mt-2">
-                <b>Coming soon:</b> CHSI verification assistance for Chinese graduates.
-              </span>
+            <p className="lead">
+              Step‑by‑step support for healthcare professionals navigating <b>Dataflow</b>,{" "}
+              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>CHSI</b> (coming soon).
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={WHATSAPP} className="btn btn-outline">Chat on WhatsApp</a>
-              <a href="#pricing" className="btn btn-primary">See packages</a>
+            <div className="cta-row">
+              <a href="#packages" className="btn btn--primary">View packages</a>
+              <a href="#contact" className="btn btn--ghost">Book consultation</a>
             </div>
-            <div className="mt-6 flex items-center gap-4 text-white/85">
-              <a href={IG} target="_blank" className="link text-white/90">Instagram</a>
-              <a href={FB} target="_blank" className="link text-white/90">Facebook</a>
-              <a href={LI} target="_blank" className="link text-white/90">LinkedIn</a>
+            <div className="social">
+              <a href={IG} target="_blank" rel="noreferrer">Instagram</a>
+              <a href={FB} target="_blank" rel="noreferrer">Facebook</a>
+              <a href={LI} target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
           </div>
 
-          <div className="card p-5 md:p-6 reveal">
-            <h3 className="font-semibold text-lg text-ink">Executive Summary</h3>
-            <p className="mt-2 text-ink/80 text-sm">
-              Drs Pathway guides healthcare professionals through Saudi medical licensing —
-              including Dataflow, SCFHS Mumaris+, Prometric exam orientation, and (soon) CHSI verification —
-              with personalized, transparent, and affordable support.
+          <aside className="hero-card" aria-label="Quick intro">
+            <h3>Quick intro</h3>
+            <p>
+              Dr’s Pathway, founded by <b>Dr. Saad Khan</b>, empowers healthcare professionals
+              to achieve Saudi medical licensing with confidence. Personalized guidance that
+              simplifies complex processes, saving time and reducing stress.
             </p>
-            <ul className="mt-4 grid grid-cols-2 gap-3 text-sm text-ink/80">
-              <li className="p-3 rounded-lg" style={{ background: "var(--color-brand-100)" }}>Dataflow support</li>
-              <li className="p-3 rounded-lg" style={{ background: "var(--color-brand-100)" }}>Mumaris+ registration</li>
-              <li className="p-3 rounded-lg" style={{ background: "var(--color-brand-100)" }}>Prometric guidance</li>
-              <li className="p-3 rounded-lg" style={{ background: "var(--color-brand-100)" }}>One-to-One Doc Review</li>
+            <ul className="chips">
+              <li>Licensing Guidance</li>
+              <li>Exam & Career Support</li>
+              <li>Document Review</li>
+              <li>CHSI (soon)</li>
+            </ul>
+          </aside>
+        </div>
+        <div className="hero-bg" aria-hidden="true" />
+      </section>
+
+      {/* ===== About ===== */}
+      <section id="about" className="band band--light" aria-labelledby="about-title">
+        <div className="shell grid-2">
+          <div>
+            <h2 id="about-title">About Dr’s Pathway</h2>
+            <p>
+              Founded by <b>Dr. Saad Khan (MBBS)</b> — trained at <b>Nishtar Hospital, Multan</b>,
+              served at <b>Saudi German Hospital, Jeddah</b>, and currently practicing in KSA.
+              We empower healthcare professionals to navigate licensing confidently,
+              transparently, and successfully.
+            </p>
+            <ul className="values">
+              <li>Integrity</li>
+              <li>Expertise</li>
+              <li>Transparency</li>
+              <li>Accessibility</li>
             </ul>
           </div>
+          <div>
+            <div className="card">
+              <h3>What we do</h3>
+              <ul className="list">
+                <li>Step‑by‑step guidance: Dataflow, SCFHS, Prometric</li>
+                <li>Personalized one‑to‑one sessions & document checks</li>
+                <li>Clear instructions, follow‑ups, and issue resolution</li>
+              </ul>
+              <a className="link" href="#services">See services →</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section id="services" className="py-16 section-alt">
-        <div className="max-w-[1200px] mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink">Services Overview</h2>
-
-          <div className="mt-8 grid md:grid-cols-3 gap-5">
-            <div className="card p-5 reveal">
-              <Num>1</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">Licensing Guidance</h3>
-              <ul className="mt-2 text-ink/70 text-sm space-y-1.5">
+      {/* ===== Services ===== */}
+      <section id="services" className="band band--dark" aria-labelledby="services-title">
+        <div className="shell">
+          <h2 id="services-title">Our Services</h2>
+          <div className="cards-3">
+            <article className="card">
+              <h3>Licensing Guidance</h3>
+              <ul className="list">
                 <li>Dataflow verification support</li>
-                <li>SCFHS Mumaris+ registration &amp; licensing</li>
-                <li>Application follow-up &amp; issue resolution</li>
+                <li>SCFHS Mumaris+ registration & licensing</li>
+                <li>Application follow‑up & issue resolution</li>
               </ul>
-            </div>
-
-            <div className="card p-5 reveal">
-              <Num>2</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">Exam &amp; Career Support</h3>
-              <ul className="mt-2 text-ink/70 text-sm space-y-1.5">
+            </article>
+            <article className="card">
+              <h3>Exam & Career Support</h3>
+              <ul className="list">
                 <li>Prometric exam guidance</li>
-                <li>Bi-weekly online lectures</li>
-                <li>1-to-1 sessions (career planning &amp; guidance)</li>
+                <li>Bi‑weekly online lectures</li>
+                <li>One‑to‑one mentoring</li>
               </ul>
-            </div>
-
-            <div id="docreview" className="card p-5 reveal">
-              <Num>3</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">One-to-One Document Review</h3>
-              <p className="mt-2 text-ink/70 text-sm">
-                Private session to review <b>CV, degree certificates, translations, attestations, ID, experience letters</b>.
-                Includes checklist, corrections, and <b>final pre-submission verification</b>.
-                Available standalone, in Premium, or hourly add-on.
+            </article>
+            <article className="card">
+              <h3>One‑to‑One Document Review</h3>
+              <p>
+                Private session to review CV, certificates, translations, attestations, ID, and experience letters.
+                Includes checklist, corrections, and final pre‑submission verification.
               </p>
-            </div>
+            </article>
           </div>
 
-          <div className="mt-5 grid md:grid-cols-3 gap-5">
-            <div className="card p-5 reveal">
-              <Num>4</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">CHSI Verification (Coming Soon)</h3>
-              <p className="mt-2 text-ink/70 text-sm">
-                Assistance for <b>Chinese graduates</b> completing CHSI — a mandatory step for Dataflow.
-              </p>
-            </div>
-
-            <div className="card p-5 reveal">
-              <Num>5</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">Who We Serve</h3>
-              <ul className="mt-2 text-ink/70 text-sm space-y-1.5">
-                <li>Junior &amp; Senior Doctors</li>
-                <li>Physiotherapists, Nurses, Pharmacists</li>
-                <li>Allied Health Professionals</li>
-                <li>International graduates (China, Pakistan, India, Egypt, etc.)</li>
+          <div className="cards-3 mt">
+            <article className="card">
+              <h3>CHSI Verification (Soon)</h3>
+              <p>Guidance for Chinese graduates completing CHSI verification.</p>
+            </article>
+            <article className="card">
+              <h3>Who We Serve</h3>
+              <ul className="list">
+                <li>Junior & Senior Doctors</li>
+                <li>Physiotherapists • Nurses • Pharmacists</li>
+                <li>Allied Health • International graduates</li>
               </ul>
-            </div>
-
-            <div className="card p-5 reveal">
-              <Num>6</Num>
-              <h3 className="mt-3 font-semibold text-lg text-ink">Core Values</h3>
-              <p className="mt-2 text-ink/70 text-sm">
-                Integrity • Expertise • Transparency • Accessibility
-              </p>
-            </div>
+            </article>
+            <article className="card">
+              <h3>Ready to begin?</h3>
+              <p>Book a one‑to‑one consultation and we’ll map your exact pathway.</p>
+              <a href="#contact" className="btn btn--primary">Book consultation</a>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* Packages */}
-      <section id="pricing" className="py-16 section">
-        <div className="max-w-[1200px] mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink">Packages &amp; Pricing</h2>
-          <p className="mt-3 text-ink/70">Transparent, flexible, and based on your needs.</p>
-          <div className="mt-8 grid md:grid-cols-3 gap-5">
-            {[
-              { t: "Basic", s: "Dataflow + Mumaris+ registration guidance", price: "SAR 250–400" },
-              { t: "Standard", s: "Dataflow + Mumaris+ + Prometric preparation", price: "SAR 500–700" },
-              { t: "Premium", s: "Full support + Document review + Mentorship (includes 1 one-to-one doc review session)", price: "SAR 800–1,200" },
-            ].map((p, i) => (
-              <div key={i} className="card p-5 flex flex-col reveal">
-                <h3 className="font-semibold text-lg text-ink">{p.t}</h3>
-                <p className="text-ink/70 text-sm">{p.s}</p>
-                <div className="mt-3 text-3xl font-extrabold text-ink">{p.price}</div>
-                <a href="#contact" className="mt-4 btn btn-primary">Book now</a>
-              </div>
-            ))}
+      {/* ===== Packages ===== */}
+      <section id="packages" className="band band--light" aria-labelledby="packages-title">
+        <div className="shell">
+          <h2 id="packages-title">Packages & Pricing</h2>
+          <div className="pricing">
+            <article className="card pricing-card">
+              <h3>Basic</h3>
+              <p className="muted">Dataflow + Mumaris+ registration guidance</p>
+              <div className="price">SAR 250–400</div>
+              <a href="#contact" className="btn btn--primary">Get started</a>
+            </article>
+            <article className="card pricing-card featured">
+              <div className="flag">Most Popular</div>
+              <h3>Standard</h3>
+              <p className="muted">Basic + Prometric preparation</p>
+              <div className="price">SAR 500–700</div>
+              <a href="#contact" className="btn btn--primary">Choose Standard</a>
+            </article>
+            <article className="card pricing-card">
+              <h3>Premium</h3>
+              <p className="muted">Full support + Document review + Mentorship</p>
+              <div className="price">SAR 800–1,200</div>
+              <a href="#contact" className="btn btn--primary">Go Premium</a>
+            </article>
           </div>
-          <div className="mt-5 grid md:grid-cols-2 gap-5 text-sm text-ink/80">
-            <div className="card p-5 reveal">
-              <h4 className="font-semibold text-ink">Add-ons / Hourly</h4>
-              <ul className="mt-2 space-y-1.5">
-                <li><b>One-to-One Document Review (stand-alone):</b> SAR 100–150 per hour (typical session 1–2 hours)</li>
-                <li><b>Mock test &amp; exam review:</b> SAR 100 per session</li>
-                <li className="text-ink/60">*Prices may adjust based on complexity &amp; turnaround time</li>
+
+          <div className="cards-2 mt">
+            <article className="card">
+              <h4>Add‑ons / Hourly</h4>
+              <ul className="list">
+                <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
+                <li><b>Mock test & exam review</b>: SAR 100 / session</li>
               </ul>
-            </div>
-            <div className="card p-5 reveal">
-              <h4 className="font-semibold text-ink">Payments Accepted</h4>
-              <ul className="mt-2 space-y-1.5">
+            </article>
+            <article className="card">
+              <h4>Payments Accepted</h4>
+              <ul className="list">
                 <li>STC Pay</li>
                 <li>Bank Transfer</li>
-                <li>PayPal (for international clients)</li>
+                <li>PayPal (international)</li>
               </ul>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section id="process" className="py-16 section-alt">
-        <div className="max-w-[1200px] mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink">How It Works</h2>
-          <p className="mt-3 text-ink/70">A clear path from paid consultation to licensing success.</p>
-          <div className="mt-8 grid md:grid-cols-4 gap-5">
+      {/* ===== Experts ===== */}
+      <section id="experts" className="band band--brand" aria-labelledby="experts-title">
+        <div className="shell">
+          <h2 id="experts-title">Meet Our Experts</h2>
+          <p className="lead invert">We collaborate with experienced professionals so every client gets the best guidance.</p>
+          <div className="cards-3">
             {[
-              ["Paid Consultation", "Understand background, confirm documents & pathway."],
-              ["Plan & Checklist", "Tailored steps, timeline, responsibilities."],
-              ["Execution & Follow-ups", "Submit Dataflow, Mumaris+, Prometric; fix issues."],
-              ["Final Review", "One-to-one document verification before submission."],
-            ].map(([t, d], i) => (
-              <div key={i} className="card p-5 reveal">
-                <Num>{i + 1}</Num>
-                <h3 className="mt-4 font-semibold text-ink">{t}</h3>
-                <p className="mt-2 text-ink/70 text-sm">{d}</p>
-              </div>
+              { name: "Dr. Saad Khan", role: "Founder & Lead Consultant", expertise: "General Physician • Saudi Licensing & Document Review" },
+              { name: "Dr. Rabbia Naz", role: "Consultant", expertise: "SCFHS & Prometric Specialist" },
+              { name: "Dr. Muhammad", role: "Career Planning Expert", expertise: "Career Pathways & Exam Strategy" },
+            ].map((x, i) => (
+              <article key={i} className="card expert">
+                <div className="avatar" aria-hidden="true" />
+                <h3>{x.name}</h3>
+                <p className="muted">{x.role}</p>
+                <p>{x.expertise}</p>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Optional: Document Review Workflow */}
-          <div className="mt-8 card p-5 reveal">
-            <h3 className="font-semibold text-ink">Document Review Workflow (Example)</h3>
-            <ol className="mt-3 list-decimal pl-5 text-ink/80 space-y-1.5 text-sm">
-              <li>Client books &amp; uploads documents via secure link.</li>
-              <li>Pre-review: issues are marked for correction.</li>
-              <li>Live one-to-one session: walkthrough of corrections &amp; next steps.</li>
-              <li>Final verification before submission.</li>
-            </ol>
+      {/* ===== Testimonials ===== */}
+      <section id="testimonials" className="band band--light" aria-labelledby="testimonials-title">
+        <div className="shell">
+          <h2 id="testimonials-title">Success Stories</h2>
+          <div className="cards-2">
+            <blockquote className="card quote">
+              <p>“Thanks to Dr’s Pathway, I completed my SCFHS registration smoothly and started my practice in Saudi Arabia. Highly recommend!”</p>
+              <cite>— Client Name</cite>
+            </blockquote>
+            <blockquote className="card quote">
+              <p>“The one‑to‑one document review session was a game‑changer. Everything was accurate and ready for submission.”</p>
+              <cite>— Client Name</cite>
+            </blockquote>
           </div>
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-16 section">
-        <div className="max-w-[1200px] mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
-          <div className="reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-ink">About Drs Pathway</h2>
-            <p className="mt-3 text-ink/70">
-              <b>Founder:</b> Dr. SAAD KHAN — <i>General Physician</i>.<br />
-              Operating digitally via <b>drspathway.com</b> and active social pages @drspathway.
-            </p>
-            <p className="mt-3 text-ink/70">
-              <b>Mission:</b> “To empower healthcare professionals to navigate the Saudi medical licensing process confidently and successfully.”
-            </p>
-            <p className="mt-2 text-ink/70">
-              <b>Vision:</b> To become the leading medical licensing guidance platform in Saudi Arabia and the GCC region.
-            </p>
-            <p className="mt-2 text-ink/70">
-              <b>Disclaimer:</b> “Drs Pathway provides professional guidance and documentation assistance. It is not a recruitment or licensing agency.”
-            </p>
+      {/* ===== Process ===== */}
+      <section id="process" className="band" aria-labelledby="process-title">
+        <div className="shell">
+          <h2 id="process-title">How It Works</h2>
+          <ol className="steps">
+            <li>
+              <span className="step-num">1</span>
+              <div>
+                <h4>Book a Consultation</h4>
+                <p>Online via website or WhatsApp.</p>
+              </div>
+            </li>
+            <li>
+              <span className="step-num">2</span>
+              <div>
+                <h4>Document Upload & Review</h4>
+                <p>Upload documents securely for a thorough pre‑check.</p>
+              </div>
+            </li>
+            <li>
+              <span className="step-num">3</span>
+              <div>
+                <h4>One‑to‑One Guidance</h4>
+                <p>Live session to correct & verify documents.</p>
+              </div>
+            </li>
+            <li>
+              <span className="step-num">4</span>
+              <div>
+                <h4>Follow‑Up Support</h4>
+                <p>We keep you updated until completion.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* ===== Blog / Insights ===== */}
+      <section id="blog" className="band band--dark" aria-labelledby="blog-title">
+        <div className="shell">
+          <h2 id="blog-title">Insights</h2>
+          <p className="lead invert">Educational content to help you prepare.</p>
+          <div className="cards-3">
+            {[
+              ["Step‑by‑Step Guide to Dataflow Verification", "Learn the exact documents and sequence to avoid rejection."],
+              ["Tips for SCFHS Mumaris+ Registration", "Common pitfalls and how to fix them."],
+              ["Prometric Exam Preparation Strategies", "Practical study plan and mock‑test approach."],
+            ].map(([t, d], i) => (
+              <article key={i} className="card">
+                <h3>{t}</h3>
+                <p className="muted">{d}</p>
+                <a className="link" href="#contact">Request full guide →</a>
+              </article>
+            ))}
           </div>
-          <div className="reveal">
-            <h3 className="text-xl font-semibold text-ink">Marketing &amp; Networking</h3>
-            <ul className="mt-3 text-ink/70 text-sm space-y-2">
-              <li><b>Social:</b> Instagram, Facebook, LinkedIn — @drspathway</li>
-              <li><b>Content:</b> Educational posts (Dataflow, Mumaris+, Prometric), reels/shorts, testimonials, weekly Q&amp;A stories</li>
-              <li><b>Website:</b> SEO keywords: SCFHS registration support, Dataflow Saudi Arabia, Prometric exam help KSA</li>
-              <li><b>Partners:</b> Hospitals, clinics, HR officers; WhatsApp/Telegram licensing groups</li>
+        </div>
+      </section>
+
+      {/* ===== Contact ===== */}
+      <section id="contact" className="band band--brand" aria-labelledby="contact-title">
+        <div className="shell grid-2">
+          <div>
+            <h2 id="contact-title" className="invert">Contact Us</h2>
+            <p className="lead invert">We’ll get back to you within 24 hours.</p>
+            <ul className="contact-lines">
+              <li>🌐 <a className="link invert" href="https://drspathway.com" target="_blank" rel="noreferrer">drspathway.com</a></li>
+              <li>💬 <a className="link invert" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp us</a></li>
+              <li>✉️ <a className="link invert" href="mailto:info@drspathway.com">info@drspathway.com</a></li>
+              <li className="social">
+                <a className="link invert" href={IG} target="_blank" rel="noreferrer">Instagram</a>
+                <a className="link invert" href={FB} target="_blank" rel="noreferrer">Facebook</a>
+                <a className="link invert" href={LI} target="_blank" rel="noreferrer">LinkedIn</a>
+              </li>
+              <li className="muted invert small">
+                We do not disclose a physical location. Services are provided digitally.
+              </li>
+              <li className="muted invert small">
+                “Dr’s Pathway provides professional guidance and documentation assistance. It is not a recruitment or licensing agency.”
+              </li>
             </ul>
-            <div className="mt-5 p-4 rounded-xl" style={{ background: "var(--color-brand-100)", border: "1px solid var(--color-border)" }}>
-              <p className="text-sm text-ink/70">
-                <b>Core Values:</b> Integrity • Expertise • Transparency • Accessibility
-              </p>
-            </div>
           </div>
+
+          <form className="card form" onSubmit={(e) => { e.preventDefault(); alert("Thank you! We’ll contact you shortly."); }}>
+            <label>
+              <span>Full name</span>
+              <input required placeholder="Full name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" required placeholder="name@example.com" />
+            </label>
+            <label>
+              <span>WhatsApp number</span>
+              <input required placeholder="+966…" />
+            </label>
+            <label>
+              <span>Profession</span>
+              <select required defaultValue="">
+                <option value="" disabled>Choose…</option>
+                <option>Doctor</option>
+                <option>Physiotherapist</option>
+                <option>Nurse</option>
+                <option>Pharmacist</option>
+                <option>Allied Health</option>
+              </select>
+            </label>
+            <label>
+              <span>How can we help?</span>
+              <textarea rows={4} placeholder="Dataflow, Mumaris+, Prometric, CHSI…" />
+            </label>
+            <button className="btn btn--primary" type="submit">Send</button>
+          </form>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-16 section-alt">
-        <div className="max-w-[1200px] mx-auto px-4 grid md:grid-cols-2 gap-6">
-          <div className="card p-5 reveal">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Thanks! We will contact you soon.");
-              }}
-            >
-              <div className="grid gap-3">
-                <input className="px-4 py-3 rounded-xl border bg-surface" style={{ borderColor: "var(--color-border)" }} placeholder="Full name" required />
-                <input className="px-4 py-3 rounded-xl border bg-surface" style={{ borderColor: "var(--color-border)" }} placeholder="Email" type="email" required />
-                <input className="px-4 py-3 rounded-xl border bg-surface" style={{ borderColor: "var(--color-border)" }} placeholder="WhatsApp number" required />
-                <select className="px-4 py-3 rounded-xl border bg-surface" style={{ borderColor: "var(--color-border)" }} required defaultValue="">
-                  <option value="" disabled>Profession</option>
-                  <option>Doctor</option>
-                  <option>Physiotherapist</option>
-                  <option>Nurse</option>
-                  <option>Pharmacist</option>
-                  <option>Allied Health</option>
-                </select>
-                <textarea
-                  className="px-4 py-3 rounded-xl border bg-surface"
-                  style={{ borderColor: "var(--color-border)" }}
-                  rows={4}
-                  placeholder="Write a short note about your goal and what you need help with (Dataflow, Mumaris+, Prometric, etc.)"
-                />
-                <button className="btn" type="submit">Send</button>
-              </div>
-            </form>
-          </div>
-          <div className="card p-5 reveal">
-            <div className="space-y-4 text-ink/80">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg" style={{ background: "var(--color-brand-100)" }}>🌐</div>
-                <a className="link" href="https://drspathway.com" target="_blank">drspathway.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg" style={{ background: "var(--color-brand-100)" }}>💬</div>
-                <a className="link" href={WHATSAPP} target="_blank">WhatsApp us</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg" style={{ background: "var(--color-brand-100)" }}>✉️</div>
-                <a className="link" href="mailto:info@drspathway.com">info@drspathway.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg" style={{ background: "var(--color-brand-100)" }}>📱</div>
-                <div className="flex gap-4">
-                  <a href={IG} target="_blank" className="link">Instagram</a>
-                  <a href={FB} target="_blank" className="link">Facebook</a>
-                  <a href={LI} target="_blank" className="link">LinkedIn</a>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 divider">
-              <p className="pt-4 text-xs text-ink/60">
-                For privacy reasons, we do not publicly disclose a physical location. Services are provided digitally.
-              </p>
-              <p className="pt-2 text-xs text-ink/60">
-                By messaging, you agree this is a professional consultancy, not a recruitment/licensing agency.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="pt-10 pb-12 border-t section" style={{ borderColor: "var(--color-border)" }}>
-        <div className="max-w-[1200px] mx-auto px-4 text-sm text-ink/70">
-          © {new Date().getFullYear()} Drs Pathway. All rights reserved.
+      {/* ===== Footer ===== */}
+      <footer className="site-footer" role="contentinfo">
+        <div className="shell">
+          <div>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
+          <nav className="footer-nav" aria-label="Footer">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#packages">Packages</a>
+            <a href="#contact">Contact</a>
+          </nav>
         </div>
       </footer>
+
+      {/* ===== Styles ===== */}
+      <style jsx global>{`
+        :root{
+          --bg:#0B1220;           /* page background */
+          --surface:#0E1626;      /* headers/sections */
+          --panel:#0F1B31;        /* cards on dark */
+          --ink:#EAF2FF;          /* main text */
+          --muted:#A7B7D8;        /* muted text */
+          --border:rgba(255,255,255,0.12);
+
+          --blue-500:#2E7CF6;
+          --blue-600:#1F5CCB;
+          --blue-700:#1548A8;
+          --blue-800:#0F377F;
+          --teal-400:#20DFC9;
+          --teal-500:#14B8A6;
+
+          --grad-hero: radial-gradient(1200px 600px at 10% -10%, rgba(46,124,246,0.35), transparent 60%),
+                       radial-gradient(900px 500px at 90% 10%, rgba(20,184,166,0.25), transparent 60%),
+                       linear-gradient(160deg, #0A1224 0%, #0C1C34 60%, #0C2144 100%);
+
+          --radius:16px;
+          --shadow:0 12px 28px -12px rgba(0,0,0,.5);
+        }
+
+        html,body{ height:100%; background:#0A1020; }
+        body{ margin:0; color:var(--ink); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+        *,*::before,*::after{ box-sizing:border-box; }
+        a{ color:inherit; text-decoration:none; }
+
+        .shell{ max-width:1200px; margin:0 auto; padding:0 20px; }
+
+        /* Header */
+        .site-header{
+          position:sticky; top:0; z-index:50;
+          background:rgba(10,16,32,0.6);
+          backdrop-filter: blur(10px);
+          border-bottom:1px solid var(--border);
+        }
+        .brand{ display:flex; align-items:center; gap:.6rem; padding:.8rem 0; }
+        .logo{
+          width:40px; height:40px; border-radius:10px;
+          display:grid; place-items:center;
+          background:linear-gradient(135deg, var(--blue-700), var(--blue-500));
+          color:white; font-weight:900;
+          box-shadow: var(--shadow);
+        }
+        .brand-text{ font-weight:900; letter-spacing:.2px; }
+
+        .nav{ display:flex; align-items:center; gap:1rem; }
+        .nav a{ padding:.5rem .6rem; color:var(--muted); }
+        .nav a:hover{ color:#fff; }
+        .btn{
+          display:inline-flex; align-items:center; justify-content:center;
+          padding:.8rem 1.1rem; border-radius:12px; font-weight:800; letter-spacing:.2px;
+          border:1px solid transparent;
+          transition: transform .12s ease, background .3s ease, box-shadow .3s ease;
+        }
+        .btn--primary{
+          background:linear-gradient(90deg, var(--blue-800), var(--blue-600), var(--blue-500));
+          color:#fff; box-shadow:0 8px 24px rgba(46,124,246,.25);
+        }
+        .btn--primary:hover{ transform: translateY(-1px); }
+        .btn--ghost{
+          background:transparent; color:#fff; border-color:rgba(255,255,255,.25);
+        }
+        .btn--ghost:hover{ background:rgba(255,255,255,.06); }
+
+        /* Hero */
+        .hero{ position:relative; background:var(--grad-hero); padding:72px 0; }
+        .hero-bg{ position:absolute; inset:0; pointer-events:none; background:
+          radial-gradient(900px 500px at -10% 100%, rgba(21,72,168,.2), transparent 60%),
+          radial-gradient(900px 500px at 110% 100%, rgba(32,223,201,.15), transparent 60%);
+          mix-blend: screen;
+          opacity:.9;
+        }
+        .hero-grid{ position:relative; display:grid; grid-template-columns:1fr; gap:24px; }
+        @media(min-width: 900px){ .hero-grid{ grid-template-columns:1.15fr .85fr; gap:40px; } }
+        .eyebrow{ color:var(--teal-400); font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem; }
+        .display{ font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:.5rem 0 0; }
+        .lead{ color:#dbe7ff; max-width: 50ch; margin-top: 10px; }
+
+        .cta-row{ display:flex; gap:.75rem; margin-top: 18px; flex-wrap: wrap; }
+        .social{ display:flex; gap:1rem; margin-top: 14px; color:#c6d6ff; }
+        .social a{ color:#cfe0ff; }
+        .social a:hover{ color:white; text-decoration:underline; text-underline-offset:3px; }
+
+        .hero-card{
+          position:relative; z-index:1;
+          background: rgba(255,255,255,.06);
+          border:1px solid rgba(255,255,255,.15);
+          border-radius: var(--radius);
+          padding: 18px;
+          box-shadow: var(--shadow);
+        }
+        .chips{ display:flex; flex-wrap:wrap; gap:.5rem; padding:0; margin:12px 0 0; list-style:none; }
+        .chips li{
+          padding:.35rem .7rem; border-radius:999px; font-weight:700; font-size:.75rem;
+          background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+        }
+
+        /* Section bands */
+        .band{ padding:64px 0; background: var(--surface); border-top:1px solid var(--border); }
+        .band--light{ background: #0D1527; }
+        .band--dark{ background: #0B1322; }
+        .band--brand{ background: linear-gradient(180deg, #0B1424 0%, #0C1C34 60%, #0C2344 100%); }
+
+        .grid-2{ display:grid; gap:24px; grid-template-columns:1fr; }
+        @media(min-width: 900px){ .grid-2{ grid-template-columns:1.1fr .9fr; gap:40px; } }
+
+        .card{
+          background: #0c1529;
+          border:1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 18px;
+          box-shadow: var(--shadow);
+        }
+        .list{ padding-left: 18px; margin: 10px 0 0; }
+        .list li{ margin: 6px 0; }
+
+        .values{ display:flex; flex-wrap:wrap; gap:.5rem; padding:0; margin: 12px 0 0; list-style:none; }
+        .values li{
+          padding:.35rem .7rem; border-radius:999px; font-weight:800; font-size:.72rem;
+          color:#e8f1ff; background:#0a1d3a; border:1px solid rgba(255,255,255,.08);
+        }
+
+        .cards-3{ display:grid; grid-template-columns:1fr; gap:16px; }
+        .cards-2{ display:grid; grid-template-columns:1fr; gap:16px; }
+        @media(min-width: 800px){ .cards-3{ grid-template-columns: repeat(3, 1fr); } .cards-2{ grid-template-columns: repeat(2, 1fr); } }
+        .mt{ margin-top: 18px; }
+
+        /* Pricing */
+        .pricing{ display:grid; gap:16px; grid-template-columns: 1fr; }
+        @media(min-width: 900px){ .pricing{ grid-template-columns: repeat(3, 1fr); } }
+        .pricing-card{ text-align:center; }
+        .pricing-card .price{ margin:10px 0 12px; font-size: clamp(1.6rem, 3vw, 2rem); font-weight:900; }
+        .pricing-card .muted{ color: var(--muted); }
+        .pricing-card.featured{ outline: 2px solid var(--blue-600); box-shadow: 0 10px 36px rgba(46,124,246,.25); position:relative; }
+        .pricing-card .flag{
+          position:absolute; top:-10px; right:12px; background:var(--blue-600); color:#fff; font-size:.7rem; font-weight:900;
+          padding:.25rem .5rem; border-radius:999px; letter-spacing:.08em; text-transform:uppercase;
+        }
+
+        /* Experts */
+        .expert .avatar{
+          height:120px; border-radius:12px; margin-bottom:10px;
+          background: linear-gradient(135deg, rgba(46,124,246,.35), rgba(20,184,166,.25));
+          border:1px solid var(--border);
+        }
+
+        /* Quotes */
+        .quote p{ color:#e6eeff; }
+        .quote cite{ display:block; margin-top:8px; color:var(--muted); font-style:normal; }
+
+        /* Steps */
+        .steps{ list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
+        .steps li{ display:flex; gap:12px; background:#0b182f; border:1px solid var(--border); border-radius:12px; padding:12px; }
+        .step-num{
+          width:36px; height:36px; border-radius:999px; display:grid; place-items:center;
+          background: linear-gradient(135deg, var(--blue-700), var(--blue-500)); color:#fff; font-weight:900;
+        }
+
+        /* Links */
+        .link{ color:#d1e3ff; }
+        .link:hover{ color:#fff; text-decoration: underline; text-underline-offset:3px; }
+        .invert{ color:#e8f2ff; }
+
+        .muted{ color: var(--muted); }
+        .small{ font-size: .85rem; }
+
+        /* Forms */
+        .form{ display:grid; gap:10px; }
+        .form label{ display:grid; gap:6px; font-weight:700; color:#dfe8ff; }
+        .form input, .form select, .form textarea{
+          background:#0b162b; color:#eaf2ff; border:1px solid var(--border); border-radius:12px; padding:.75rem .9rem;
+          outline:none; transition: border .2s ease, box-shadow .2s ease;
+        }
+        .form input:focus, .form select:focus, .form textarea:focus{
+          border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(46,124,246,.25);
+        }
+
+        /* Footer */
+        .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
+        .site-footer .shell{ padding:18px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+        .footer-nav{ display:flex; gap:14px; }
+        .footer-nav a{ color:#b8c8e6; }
+        .footer-nav a:hover{ color:#fff; }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce){
+          .btn, .form input, .form select, .form textarea{ transition: none; }
+        }
+      `}</style>
     </main>
   );
 }
