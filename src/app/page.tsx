@@ -148,6 +148,8 @@ export default function Home() {
         >
           <source src="/video.mp4" type="video/mp4" />
         </video>
+        {/* Dark scrim over video for legibility */}
+        <div className="hero-scrim" aria-hidden="true" />
 
         <div className="shell hero-grid">
           <div className="hero-copy reveal">
@@ -602,35 +604,20 @@ export default function Home() {
             </div>
           </div>
 
-          <form className="card form reveal" onSubmit={(e) => { e.preventDefault(); alert("Thank you! We’ll contact you shortly."); }}>
+          <form
+            className="card form reveal"
+            action="https://formspree.io/f/mpworoop"
+            method="POST"
+          >
             <label>
-              <span>Full name</span>
-              <input required placeholder="Full name" />
+              <span>Your Email</span>
+              <input type="email" name="email" required placeholder="name@example.com" />
             </label>
             <label>
-              <span>Email</span>
-              <input type="email" required placeholder="name@example.com" />
+              <span>Your Message</span>
+              <textarea name="message" rows={4} placeholder="How can we help?" required />
             </label>
-            <label>
-              <span>WhatsApp number</span>
-              <input required placeholder="+966…" />
-            </label>
-            <label>
-              <span>Profession</span>
-              <select required defaultValue="">
-                <option value="" disabled>Choose…</option>
-                <option>Doctor</option>
-                <option>Physiotherapist</option>
-                <option>Nurse</option>
-                <option>Pharmacist</option>
-                <option>Allied Health</option>
-              </select>
-            </label>
-            <label>
-              <span>How can we help?</span>
-              <textarea rows={4} placeholder="Dataflow, Mumaris+, Prometric, CHSI…" />
-            </label>
-            <button className="btn btn--primary" type="submit">Send</button>
+            <button type="submit" className="btn btn--primary">Send</button>
           </form>
         </div>
       </section>
@@ -792,23 +779,27 @@ export default function Home() {
 
         /* Footer */
         .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
-        .footer-grid{ display:grid; grid-template-columns:1fr; gap:28px; padding:36px 0; }
+        .footer-grid{ display:grid; grid-template-columns:1fr; gap:32px; padding:48px 0; }
         @media(min-width: 900px){
-          .footer-grid{ grid-template-columns: 1.2fr .9fr .9fr 1.1fr; column-gap:36px; row-gap:28px; }
+          .footer-grid{ grid-template-columns: 1.2fr .9fr .9fr 1.1fr; column-gap:44px; row-gap:36px; }
         }
-        .f-col h4{ margin:0 0 .6rem 0; font-weight:900; }
-        .f-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:.4rem; }
+        .f-col h4{ margin:0 0 .9rem 0; font-weight:900; }
+        .f-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:.6rem; }
         .f-col a{ color:#b8c8e6; }
         .f-col a:hover{ color:#fff; }
         .brand-col .brand{ padding:0; }
+        .brand-col p{ margin:10px 0 12px; }
+        .f-col p{ margin:0 0 12px; }
+        .f-col{ line-height:1.7; }
         .f-social{ display:flex; gap:10px; margin-top:10px; }
 
         .footer-bottom{ border-top:1px solid var(--border); background:#09101e; }
-        .footer-bottom-row{ display:flex; gap:16px; align-items:center; justify-content:space-between; padding:16px 0; flex-wrap:wrap; }
+        .footer-bottom-row{ display:flex; gap:20px; align-items:center; justify-content:space-between; padding:20px 0; flex-wrap:wrap; }
         @media(min-width: 1200px){
-          .footer-grid{ padding:56px 0; gap:36px; }
-          .f-col h4{ margin:0 0 .8rem 0; }
-          .f-col ul{ gap:.6rem; }
+          .footer-grid{ padding:72px 0; column-gap:48px; row-gap:40px; }
+          .f-col h4{ margin:0 0 1rem 0; }
+          .f-col ul{ gap:.75rem; }
+          .footer-bottom-row{ padding:24px 0; gap:24px; }
         }
         :root{
           --bg:#0B1220;           /* page background */
@@ -889,11 +880,27 @@ export default function Home() {
         .hero{ position:relative; background: var(--grad-hero); padding:72px 0; overflow:hidden; }
         .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0; transition: opacity .5s ease; pointer-events:none; }
         .hero-video.show{ opacity:1; }
+        .hero-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none; background:
+          linear-gradient(180deg, rgba(5,10,20,.36) 0%, rgba(5,10,20,.48) 45%, rgba(5,10,20,.56) 100%);
+        }
         .hero-grid{ position:relative; z-index:2; display:grid; grid-template-columns:1fr; gap:24px; }
         @media(min-width: 900px){ .hero-grid{ grid-template-columns:1.15fr .85fr; gap:40px; } }
-        .eyebrow{ color:var(--teal-400); font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem; }
-        .display{ font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:.5rem 0 0; }
-        .lead{ color:#dbe7ff; max-width: 50ch; margin-top: 10px; }
+        /* Hero text color for max contrast above video */
+        .hero .eyebrow {
+          color: #e8f2ff;
+          font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem;
+          text-shadow: 0 1px 3px rgba(0,0,0,.45);
+        }
+        .hero .display {
+          color: #ffffff;
+          text-shadow: 0 3px 10px rgba(0,0,0,.5);
+          font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:.5rem 0 0;
+        }
+        .hero .lead {
+          color: #d9e6ff;
+          text-shadow: 0 2px 6px rgba(0,0,0,.45);
+          max-width: 50ch; margin-top: 10px;
+        }
 
         .cta-row{ display:flex; gap:.75rem; margin-top: 18px; flex-wrap: wrap; }
         .social{ display:flex; gap:1rem; margin-top: 14px; color:#c6d6ff; }
@@ -901,7 +908,7 @@ export default function Home() {
         .social a:hover{ color:white; text-decoration:underline; text-underline-offset:3px; }
 
         .hero-card{
-          position:relative; z-index:1;
+          position:relative; z-index:2;
           background: rgba(255,255,255,.06);
           border:1px solid rgba(255,255,255,.15);
           border-radius: var(--radius);
