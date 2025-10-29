@@ -1,5 +1,5 @@
  "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 /* Fresh, Tailwind-free single-file homepage for Drs Pathway
    - Pure CSS (styled-jsx) + semantic HTML
    - Modern blue/teal palette
@@ -13,6 +13,29 @@ export default function Home() {
   const IG = "https://www.instagram.com/drspathway?igsh=bWJsdmozeWZwNWh5";
   const FB = "https://www.facebook.com/share/14Qt2FGdB9b/";
   const LI = "https://www.linkedin.com/company/drs-pathway";
+
+  useEffect(() => {
+    // Mark the DOM ready so CSS shows content before JS as a safety
+    document.documentElement.classList.add('reveal-ready');
+
+    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: show all
+      els.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      }
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    els.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   return (
     <main>
@@ -39,7 +62,6 @@ export default function Home() {
             <a href="#packages" onClick={() => setMenuOpen(false)}>Packages</a>
             <a href="#experts" onClick={() => setMenuOpen(false)}>Experts</a>
             <a href="#process" onClick={() => setMenuOpen(false)}>How it works</a>
-            <a href="#blog" onClick={() => setMenuOpen(false)}>Blog</a>
             <a href="#contact" className="btn btn--primary" onClick={() => setMenuOpen(false)}>Get started</a>
           </nav>
         </div>
@@ -48,7 +70,7 @@ export default function Home() {
       {/* ===== Hero ===== */}
       <section id="home" className="hero" role="region" aria-labelledby="hero-title">
         <div className="shell hero-grid">
-          <div className="hero-copy">
+          <div className="hero-copy reveal">
             <p className="eyebrow">Guiding Your Medical Licensing Journey</p>
             <h1 id="hero-title" className="display">
               Your trusted guide to medical registration in Saudi Arabia
@@ -61,29 +83,9 @@ export default function Home() {
               <a href="#packages" className="btn btn--primary">View packages</a>
               <a href="#contact" className="btn btn--ghost">Book consultation</a>
             </div>
-            <div className="social">
-              <a href={IG} target="_blank" rel="noreferrer" aria-label="Instagram (opens in a new tab)">
-                <span className="sr-only">Instagram</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
-                </svg>
-              </a>
-              <a href={FB} target="_blank" rel="noreferrer" aria-label="Facebook (opens in a new tab)">
-                <span className="sr-only">Facebook</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.7-1.5H17V5.1C16.5 5 15.3 5 14 5c-2.4 0-4 1.4-4 4v2.9H7.5v3H10v8z"/>
-                </svg>
-              </a>
-              <a href={LI} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
-                <span className="sr-only">LinkedIn</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7.5 0h4.8v2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V22h-5v-6.4c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V22h-5V8z"/>
-                </svg>
-              </a>
-            </div>
           </div>
 
-          <aside className="hero-card" aria-label="Quick intro">
+          <aside className="hero-card reveal" aria-label="Quick intro">
             <h3>Quick intro</h3>
             <p>
               Dr’s Pathway, founded by <b>Dr. Saad Khan</b>, empowers healthcare professionals
@@ -120,7 +122,7 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            <div className="card">
+            <div className="card reveal">
               <h3>What we do</h3>
               <ul className="list">
                 <li>Step‑by‑step guidance: Dataflow, SCFHS, Prometric</li>
@@ -138,24 +140,44 @@ export default function Home() {
         <div className="shell">
           <h2 id="services-title">Our Services</h2>
           <div className="cards-3">
-            <article className="card">
-              <h3>Licensing Guidance</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 4h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+                  <path d="M9 8h6M9 11h6"/>
+                </svg>
+                <span>Licensing Guidance</span>
+              </h3>
               <ul className="list">
                 <li>Dataflow verification support</li>
                 <li>SCFHS Mumaris+ registration & licensing</li>
                 <li>Application follow‑up & issue resolution</li>
               </ul>
             </article>
-            <article className="card">
-              <h3>Exam & Career Support</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 8l9-4 9 4-9 4-9-4z"/>
+                  <path d="M21 10v4c-2.5 2-6 3-9 3s-6.5-1-9-3v-4"/>
+                  <path d="M7 12v4"/>
+                </svg>
+                <span>Exam & Career Support</span>
+              </h3>
               <ul className="list">
                 <li>Prometric exam guidance</li>
                 <li>Bi‑weekly online lectures</li>
                 <li>One‑to‑one mentoring</li>
               </ul>
             </article>
-            <article className="card">
-              <h3>One‑to‑One Document Review</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z"/>
+                  <path d="M14 2v5h5"/>
+                  <path d="M9 14l2 2 4-4"/>
+                </svg>
+                <span>One‑to‑One Document Review</span>
+              </h3>
               <p>
                 Private session to review CV, certificates, translations, attestations, ID, and experience letters.
                 Includes checklist, corrections, and final pre‑submission verification.
@@ -164,20 +186,45 @@ export default function Home() {
           </div>
 
           <div className="cards-3 mt">
-            <article className="card">
-              <h3>CHSI Verification (Soon)</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M2.5 12h19"/>
+                  <path d="M12 3c3 3 3 15 0 18c-3-3-3-15 0-18z"/>
+                  <path d="M15 8v4h3"/>
+                </svg>
+                <span>CHSI Verification (Soon)</span>
+              </h3>
               <p>Guidance for Chinese graduates completing CHSI verification.</p>
             </article>
-            <article className="card">
-              <h3>Who We Serve</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="8" cy="10" r="3"/>
+                  <circle cx="16" cy="10" r="3"/>
+                  <path d="M4 19v-1a5 5 0 0 1 5-5h0"/>
+                  <path d="M20 19v-1a5 5 0 0 0-5-5h0"/>
+                </svg>
+                <span>Who We Serve</span>
+              </h3>
               <ul className="list">
                 <li>Junior & Senior Doctors</li>
                 <li>Physiotherapists • Nurses • Pharmacists</li>
                 <li>Allied Health • International graduates</li>
               </ul>
             </article>
-            <article className="card">
-              <h3>Ready to begin?</h3>
+            <article className="card reveal">
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19c-1.5-1.5 1-4 3-4 0 2.5-2.5 4-3 4z"/>
+                  <path d="M15 9l-6 6"/>
+                  <path d="M12 7l5-5 2 2-5 5-2-2z"/>
+                  <path d="M7 12l-2-2 5-5 2 2"/>
+                  <circle cx="18" cy="6" r="1.5"/>
+                </svg>
+                <span>Ready to begin?</span>
+              </h3>
               <p>Book a one‑to‑one consultation and we’ll map your exact pathway.</p>
               <a href="#contact" className="btn btn--primary">Book consultation</a>
             </article>
@@ -190,20 +237,32 @@ export default function Home() {
         <div className="shell">
           <h2 id="packages-title">Packages & Pricing</h2>
           <div className="pricing">
-            <article className="card pricing-card">
+            <article className="card pricing-card reveal">
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="14" height="14" rx="2"/>
+                <rect x="7" y="7" width="14" height="14" rx="2"/>
+              </svg>
               <h3>Basic</h3>
               <p className="muted">Dataflow + Mumaris+ registration guidance</p>
               <div className="price">SAR 250–400</div>
               <a href="#contact" className="btn btn--primary">Get started</a>
             </article>
-            <article className="card pricing-card featured">
+            <article className="card pricing-card featured reveal">
               <div className="flag">Most Popular</div>
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
+                <path d="M12 9l1.2 2.4 2.6.4-1.9 1.9.5 2.7L12 15.6l-2.4 1.8.5-2.7-1.9-1.9 2.6-.4L12 9z"/>
+              </svg>
               <h3>Standard</h3>
               <p className="muted">Basic + Prometric preparation</p>
               <div className="price">SAR 500–700</div>
               <a href="#contact" className="btn btn--primary">Choose Standard</a>
             </article>
-            <article className="card pricing-card">
+            <article className="card pricing-card reveal">
+              <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 8l4 3 5-6 5 6 4-3v9H3V8z"/>
+                <path d="M3 17h18"/>
+              </svg>
               <h3>Premium</h3>
               <p className="muted">Full support + Document review + Mentorship</p>
               <div className="price">SAR 800–1,200</div>
@@ -212,14 +271,14 @@ export default function Home() {
           </div>
 
           <div className="cards-2 mt">
-            <article className="card">
+            <article className="card reveal">
               <h4>Add‑ons / Hourly</h4>
               <ul className="list">
                 <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
                 <li><b>Mock test & exam review</b>: SAR 100 / session</li>
               </ul>
             </article>
-            <article className="card">
+            <article className="card reveal">
               <h4>Payments Accepted</h4>
               <ul className="list">
                 <li>STC Pay</li>
@@ -242,7 +301,7 @@ export default function Home() {
               { name: "Dr. Rabbia Naz", role: "Consultant", expertise: "SCFHS & Prometric Specialist" },
               { name: "Dr. Muhammad", role: "Career Planning Expert", expertise: "Career Pathways & Exam Strategy" },
             ].map((x, i) => (
-              <article key={i} className="card expert">
+              <article key={i} className="card expert reveal">
                 <div className="avatar" aria-hidden="true" />
                 <h3>{x.name}</h3>
                 <p className="muted">{x.role}</p>
@@ -258,11 +317,11 @@ export default function Home() {
         <div className="shell">
           <h2 id="testimonials-title">Success Stories</h2>
           <div className="cards-2">
-            <blockquote className="card quote">
+            <blockquote className="card quote reveal">
               <p>“Thanks to Dr’s Pathway, I completed my SCFHS registration smoothly and started my practice in Saudi Arabia. Highly recommend!”</p>
               <cite>— Client Name</cite>
             </blockquote>
-            <blockquote className="card quote">
+            <blockquote className="card quote reveal">
               <p>“The one‑to‑one document review session was a game‑changer. Everything was accurate and ready for submission.”</p>
               <cite>— Client Name</cite>
             </blockquote>
@@ -275,31 +334,58 @@ export default function Home() {
         <div className="shell">
           <h2 id="process-title">How It Works</h2>
           <ol className="steps">
-            <li>
+            <li className="reveal">
               <span className="step-num">1</span>
               <div>
-                <h4>Book a Consultation</h4>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="17" rx="2"/>
+                    <path d="M8 2v4M16 2v4M3 9h18"/>
+                    <path d="M9 14l2 2 4-4"/>
+                  </svg>
+                  <span>Book a Consultation</span>
+                </h4>
                 <p>Online via website or WhatsApp.</p>
               </div>
             </li>
-            <li>
+            <li className="reveal">
               <span className="step-num">2</span>
               <div>
-                <h4>Document Upload & Review</h4>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 18a4 4 0 1 1 .7-7.95A6 6 0 1 1 18 17H7z"/>
+                    <path d="M12 14v-6"/>
+                    <path d="M9.5 11.5L12 9l2.5 2.5"/>
+                  </svg>
+                  <span>Document Upload & Review</span>
+                </h4>
                 <p>Upload documents securely for a thorough pre‑check.</p>
               </div>
             </li>
-            <li>
+            <li className="reveal">
               <span className="step-num">3</span>
               <div>
-                <h4>One‑to‑One Guidance</h4>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 14a5 5 0 0 1 5-5h6a5 5 0 0 1 0 10H9l-4 3v-3a5 5 0 0 1-2-5z"/>
+                    <path d="M7 9a4 4 0 0 1 4-4h5a4 4 0 0 1 0 8"/>
+                  </svg>
+                  <span>One‑to‑One Guidance</span>
+                </h4>
                 <p>Live session to correct & verify documents.</p>
               </div>
             </li>
-            <li>
+            <li className="reveal">
               <span className="step-num">4</span>
               <div>
-                <h4>Follow‑Up Support</h4>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5h4"/>
+                    <path d="M8.5 12.5l2 2 4-4"/>
+                  </svg>
+                  <span>Follow‑Up Support</span>
+                </h4>
                 <p>We keep you updated until completion.</p>
               </div>
             </li>
@@ -307,26 +393,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Blog / Insights ===== */}
-      <section id="blog" className="band band--dark" aria-labelledby="blog-title">
-        <div className="shell">
-          <h2 id="blog-title">Insights</h2>
-          <p className="lead invert">Educational content to help you prepare.</p>
-          <div className="cards-3">
-            {[
-              ["Step‑by‑Step Guide to Dataflow Verification", "Learn the exact documents and sequence to avoid rejection."],
-              ["Tips for SCFHS Mumaris+ Registration", "Common pitfalls and how to fix them."],
-              ["Prometric Exam Preparation Strategies", "Practical study plan and mock‑test approach."],
-            ].map(([t, d], i) => (
-              <article key={i} className="card">
-                <h3>{t}</h3>
-                <p className="muted">{d}</p>
-                <a className="link" href="#contact">Request full guide →</a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ===== Contact ===== */}
       <section id="contact" className="band band--brand" aria-labelledby="contact-title">
@@ -352,7 +418,7 @@ export default function Home() {
             </div>
           </div>
 
-          <form className="card form" onSubmit={(e) => { e.preventDefault(); alert("Thank you! We’ll contact you shortly."); }}>
+          <form className="card form reveal" onSubmit={(e) => { e.preventDefault(); alert("Thank you! We’ll contact you shortly."); }}>
             <label>
               <span>Full name</span>
               <input required placeholder="Full name" />
@@ -423,7 +489,6 @@ export default function Home() {
               <li><a href="#services">Services</a></li>
               <li><a href="#packages">Packages</a></li>
               <li><a href="#experts">Experts</a></li>
-              <li><a href="#blog">Insights</a></li>
             </ul>
           </nav>
 
@@ -457,7 +522,65 @@ export default function Home() {
       </footer>
 
       {/* ===== Styles ===== */}
-      <style jsx global>{`
+      <style>{`
+        /* Reveal on scroll animation */
+        .reveal {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.7s cubic-bezier(.37,.01,.63,.99), transform 0.7s cubic-bezier(.37,.01,.63,.99);
+        }
+        .reveal.in {
+          opacity: 1;
+          transform: none;
+        }
+        /* Hero background animation */
+        .hero-bg {
+          animation: heroBgFadeIn 1.3s cubic-bezier(.37,.01,.63,.99);
+        }
+        @keyframes heroBgFadeIn {
+          from { opacity: 0; }
+          to { opacity: .9; }
+        }
+        /* Card hover effect */
+        .card {
+          transition: box-shadow .3s cubic-bezier(.37,.01,.63,.99), transform .13s cubic-bezier(.37,.01,.63,.99);
+        }
+        .card:hover {
+          box-shadow: 0 16px 40px -8px rgba(46,124,246,0.16);
+          transform: translateY(-2px) scale(1.012);
+        }
+        /* Button sheen effect */
+        .btn--primary {
+          position: relative;
+          overflow: hidden;
+        }
+        .btn--primary::before {
+          content: "";
+          position: absolute;
+          left: -50%; top: 0; width: 40%; height: 100%;
+          background: linear-gradient(110deg,rgba(255,255,255,0) 60%,rgba(255,255,255,.18) 100%);
+          transform: skewX(-18deg) translateX(-100%);
+          transition: transform .6s cubic-bezier(.37,.01,.63,.99);
+          pointer-events: none;
+        }
+        .btn--primary:hover::before {
+          transform: skewX(-18deg) translateX(210%);
+        }
+        /* Social icon micro-interaction */
+        .social a, .f-social a {
+          transition: transform .16s cubic-bezier(.37,.01,.63,.99), background .22s cubic-bezier(.37,.01,.63,.99);
+        }
+        .social a:active, .f-social a:active {
+          transform: scale(.95) translateY(1px);
+        }
+        /* Icon titles */
+        .icon-title{ display:flex; align-items:center; gap:.55rem; margin:0 0 .35rem 0; }
+        .icon-title.sm{ font-size:1rem; }
+        .i{ width:20px; height:20px; display:block; fill:#cfe0ff; }
+        .i-lg{ width:28px; height:28px; margin-bottom:6px; fill:#cfe0ff; }
+        /* Outline icon style */
+        .i-stroke{ width:20px; height:20px; display:block; fill:none; stroke:#cfe0ff; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+        .i-lg-stroke{ width:32px; height:32px; display:block; fill:none; stroke:#cfe0ff; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; margin: 0 auto 6px; }
         /* Accessible screen-reader-only text */
         .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
@@ -683,6 +806,11 @@ export default function Home() {
         /* Reduce motion */
         @media (prefers-reduced-motion: reduce){
           .btn, .form input, .form select, .form textarea{ transition: none; }
+          .reveal, .reveal.in { transition: none !important; }
+          .hero-bg { animation: none !important; }
+          .card, .card:hover { transition: none !important; }
+          .btn--primary::before, .btn--primary:hover::before { transition: none !important; }
+          .social a, .f-social a { transition: none !important; }
         }
       `}</style>
     </main>
