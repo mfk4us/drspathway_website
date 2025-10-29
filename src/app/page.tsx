@@ -88,9 +88,9 @@ export default function Home() {
           <aside className="hero-card reveal" aria-label="Quick intro">
             <h3>Quick intro</h3>
             <p>
-              Dr’s Pathway, founded by <b>Dr. Saad Khan</b>, empowers healthcare professionals
-              to achieve Saudi medical licensing with confidence. Personalized guidance that
-              simplifies complex processes, saving time and reducing stress.
+              We guide healthcare professionals through every step of Saudi medical licensing —
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>CHSI</b> (soon).
+              Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
               <li>Licensing Guidance</li>
@@ -103,37 +103,6 @@ export default function Home() {
         <div className="hero-bg" aria-hidden="true" />
       </section>
 
-      {/* ===== About ===== */}
-      <section id="about" className="band band--light" aria-labelledby="about-title">
-        <div className="shell grid-2">
-          <div>
-            <h2 id="about-title">About Dr’s Pathway</h2>
-            <p>
-              Founded by <b>Dr. Saad Khan (MBBS)</b> — trained at <b>Nishtar Hospital, Multan</b>,
-              served at <b>Saudi German Hospital, Jeddah</b>, and currently practicing in KSA.
-              We empower healthcare professionals to navigate licensing confidently,
-              transparently, and successfully.
-            </p>
-            <ul className="values">
-              <li>Integrity</li>
-              <li>Expertise</li>
-              <li>Transparency</li>
-              <li>Accessibility</li>
-            </ul>
-          </div>
-          <div>
-            <div className="card reveal">
-              <h3>What we do</h3>
-              <ul className="list">
-                <li>Step‑by‑step guidance: Dataflow, SCFHS, Prometric</li>
-                <li>Personalized one‑to‑one sessions & document checks</li>
-                <li>Clear instructions, follow‑ups, and issue resolution</li>
-              </ul>
-              <a className="link" href="#services">See services →</a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== Services ===== */}
       <section id="services" className="band band--dark" aria-labelledby="services-title">
@@ -232,6 +201,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Process ===== */}
+      <section id="process" className="band" aria-labelledby="process-title">
+        <div className="shell">
+          <h2 id="process-title">How It Works</h2>
+          <ol className="steps">
+            <li className="reveal">
+              <span className="step-num">1</span>
+              <div>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="17" rx="2"/>
+                    <path d="M8 2v4M16 2v4M3 9h18"/>
+                    <path d="M9 14l2 2 4-4"/>
+                  </svg>
+                  <span>Book a Consultation</span>
+                </h4>
+                <p>Online via website or WhatsApp.</p>
+              </div>
+            </li>
+            <li className="reveal">
+              <span className="step-num">2</span>
+              <div>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 18a4 4 0 1 1 .7-7.95A6 6 0 1 1 18 17H7z"/>
+                    <path d="M12 14v-6"/>
+                    <path d="M9.5 11.5L12 9l2.5 2.5"/>
+                  </svg>
+                  <span>Document Upload &amp; Review</span>
+                </h4>
+                <p>Upload documents securely for a thorough pre‑check.</p>
+              </div>
+            </li>
+            <li className="reveal">
+              <span className="step-num">3</span>
+              <div>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 14a5 5 0 0 1 5-5h6a5 5 0 0 1 0 10H9l-4 3v-3a5 5 0 0 1-2-5z"/>
+                    <path d="M7 9a4 4 0 0 1 4-4h5a4 4 0 0 1 0 8"/>
+                  </svg>
+                  <span>One‑to‑One Guidance</span>
+                </h4>
+                <p>Live session to correct &amp; verify documents.</p>
+              </div>
+            </li>
+            <li className="reveal">
+              <span className="step-num">4</span>
+              <div>
+                <h4 className="icon-title sm">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5h4"/>
+                    <path d="M8.5 12.5l2 2 4-4"/>
+                  </svg>
+                  <span>Follow‑Up Support</span>
+                </h4>
+                <p>We keep you updated until completion.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
       {/* ===== Packages ===== */}
       <section id="packages" className="band band--light" aria-labelledby="packages-title">
         <div className="shell">
@@ -275,7 +308,7 @@ export default function Home() {
               <h4>Add‑ons / Hourly</h4>
               <ul className="list">
                 <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
-                <li><b>Mock test & exam review</b>: SAR 100 / session</li>
+                <li><b>Mock test &amp; exam review</b>: SAR 100 / session</li>
               </ul>
             </article>
             <article className="card reveal">
@@ -329,67 +362,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Process ===== */}
-      <section id="process" className="band" aria-labelledby="process-title">
-        <div className="shell">
-          <h2 id="process-title">How It Works</h2>
-          <ol className="steps">
-            <li className="reveal">
-              <span className="step-num">1</span>
-              <div>
-                <h4 className="icon-title sm">
+
+      {/* ===== Founder / About ===== */}
+      <section id="about" className="band band--light" aria-labelledby="about-title">
+        <div className="shell founder-grid">
+          <div className="founder-visual">
+            <div className="avatar-lg" aria-hidden="true" />
+            <p className="muted small" style={{marginTop:8}}>Replace with real photo at <code>/public/founder.jpg</code> (size ~800×1000).</p>
+          </div>
+
+          <div className="founder-copy">
+            <h2 id="about-title">About Dr’s Pathway</h2>
+            <p>
+              Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — trained at <b>Nishtar Hospital, Multan</b>, with further experience at
+              <b> Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare
+              professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>CHSI</b>
+              support for Chinese graduates is launching soon.
+            </p>
+
+            <div className="badge-row">
+              <span className="badge">Integrity</span>
+              <span className="badge">Expertise</span>
+              <span className="badge">Transparency</span>
+              <span className="badge">Accessibility</span>
+            </div>
+
+            <div className="cards-2 mt">
+              <article className="card">
+                <h3 className="icon-title">
                   <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="4" width="18" height="17" rx="2"/>
-                    <path d="M8 2v4M16 2v4M3 9h18"/>
-                    <path d="M9 14l2 2 4-4"/>
+                    <path d="M6 4h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+                    <path d="M9 8h6M9 11h6"/>
                   </svg>
-                  <span>Book a Consultation</span>
-                </h4>
-                <p>Online via website or WhatsApp.</p>
-              </div>
-            </li>
-            <li className="reveal">
-              <span className="step-num">2</span>
-              <div>
-                <h4 className="icon-title sm">
+                  <span>What we do</span>
+                </h3>
+                <ul className="list">
+                  <li>Step‑by‑step guidance: Dataflow, SCFHS, Prometric</li>
+                  <li>Personalized one‑to‑one sessions &amp; document checks</li>
+                  <li>Clear instructions, follow‑ups, and issue resolution</li>
+                </ul>
+              </article>
+
+              <article className="card">
+                <h3 className="icon-title">
                   <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 18a4 4 0 1 1 .7-7.95A6 6 0 1 1 18 17H7z"/>
-                    <path d="M12 14v-6"/>
-                    <path d="M9.5 11.5L12 9l2.5 2.5"/>
+                    <path d="M12 2l3 6 6 .9-4.4 4.3 1 6-5.6-3-5.6 3 1-6L3 8.9 9 8z"/>
                   </svg>
-                  <span>Document Upload & Review</span>
-                </h4>
-                <p>Upload documents securely for a thorough pre‑check.</p>
-              </div>
-            </li>
-            <li className="reveal">
-              <span className="step-num">3</span>
-              <div>
-                <h4 className="icon-title sm">
-                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 14a5 5 0 0 1 5-5h6a5 5 0 0 1 0 10H9l-4 3v-3a5 5 0 0 1-2-5z"/>
-                    <path d="M7 9a4 4 0 0 1 4-4h5a4 4 0 0 1 0 8"/>
-                  </svg>
-                  <span>One‑to‑One Guidance</span>
-                </h4>
-                <p>Live session to correct & verify documents.</p>
-              </div>
-            </li>
-            <li className="reveal">
-              <span className="step-num">4</span>
-              <div>
-                <h4 className="icon-title sm">
-                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9"/>
-                    <path d="M12 7v5h4"/>
-                    <path d="M8.5 12.5l2 2 4-4"/>
-                  </svg>
-                  <span>Follow‑Up Support</span>
-                </h4>
-                <p>We keep you updated until completion.</p>
-              </div>
-            </li>
-          </ol>
+                  <span>Founder Highlights</span>
+                </h3>
+                <ul className="list">
+                  <li>Hands‑on guidance across Saudi licensing pathways</li>
+                  <li>Clinical background spanning Pakistan &amp; Saudi Arabia</li>
+                  <li>Clear checklists, practical tips, and timely follow‑ups</li>
+                </ul>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -594,6 +622,16 @@ export default function Home() {
         /* Contact CTAs */
         .contact-ctas .badges{ display:flex; gap:.5rem; flex-wrap:wrap; margin: 6px 0 10px; }
         .badge{ background: rgba(255,255,255,.1); border:1px solid var(--border); color:#e8f2ff; padding:.3rem .6rem; border-radius:999px; font-size:.72rem; font-weight:800; }
+
+        /* Founder */
+        .founder-grid{ display:grid; grid-template-columns:1fr; gap:24px; }
+        @media(min-width: 980px){ .founder-grid{ grid-template-columns: .9fr 1.1fr; gap:40px; align-items:center; } }
+        .founder-visual{ display:grid; justify-items:center; }
+        .avatar-lg{ width:100%; max-width:420px; aspect-ratio:4/5; border-radius:18px; border:1px solid var(--border);
+          background: linear-gradient(135deg, rgba(46,124,246,.28), rgba(20,184,166,.18)); box-shadow: var(--shadow); }
+        .founder-copy h2{ margin-top:0; }
+        .badge-row{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:10px; }
+        .badge-row .badge{ background:#0a1d3a; border:1px solid rgba(255,255,255,.08); color:#e8f1ff; }
 
         /* Footer */
         .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
