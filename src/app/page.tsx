@@ -390,9 +390,7 @@ export default function Home() {
           <div className="founder-copy">
             <h2 id="about-title">About Dr’s Pathway</h2>
             <p>
-              Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — trained at <b>Nishtar Hospital, Multan</b>, with further experience at
-              <b> Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare
-              professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>China Higher Education Student Information (CHSI)</b> support for Chinese graduates is launching soon.
+              Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — Graduated from <b>Shandong First Medical University</b>; trained at <b>Nishtar Hospital, Multan</b>, with further experience at <b>Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>China Higher Education Student Information (CHSI)</b> support for Chinese graduates is launching soon.
             </p>
 
             <div className="badge-row">
