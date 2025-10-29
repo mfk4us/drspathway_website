@@ -1,0 +1,228 @@
+/* Tailwind (v4 compatible) */
+@import "tailwindcss";
+
+/* ===============================
+   Drs Pathway — Royal Medical Blue System
+   - Semantic roles (bg/surface/ink/border)
+   - Full brand scale (brand-50..900)
+   - Accent & hero
+   - Reusable components
+================================== */
+@theme inline {
+  /* --- Semantic roles --- */
+  --color-bg: #FFFFFF;          /* page background */
+  --color-surface: #FFFFFF;     /* cards/sections */
+  --color-ink: #0F172A;         /* primary text */
+  --color-muted: #64748B;       /* secondary text */
+  --color-border: #E6EEF6;      /* subtle borders */
+
+  /* --- Brand scale (Royal Medical Blue) --- */
+  --color-brand-50:  #F0F7FF;
+  --color-brand-100: #E6F2FF;   /* light tint (chips/alt sections) */
+  --color-brand-200: #D7E9FF;
+  --color-brand-300: #BAD9FF;
+  --color-brand-400: #8EC3FF;
+  --color-brand-500: #1A8CFF;   /* accent mid */
+  --color-brand-600: #0B72B9;   /* primary brand */
+  --color-brand-700: #0A5E95;
+  --color-brand-800: #084A75;
+  --color-brand-900: #07395A;
+
+  /* Shorthand names used by classes like text-brand, from-brand, to-accent */
+  --color-brand: var(--color-brand-600);
+  --color-accent: var(--color-brand-500); /* accent skews brighter */
+
+  /* Hero (deep navy gradient) */
+  --color-hero-start: #0A2440;
+  --color-hero-end:   #0B3B6E;
+
+  /* Radius & shadows */
+  --radius-xl: 12px;
+  --shadow-card: 0 8px 24px -12px rgba(2, 6, 23, 0.08);
+
+  /* Focus ring */
+  --ring: var(--color-brand-500);
+}
+
+/* --- Base --- */
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--color-brand); color: #fff; }
+
+/* --- Utilities / Sections --- */
+.bg-hero {
+  background: linear-gradient(135deg, var(--color-hero-start), var(--color-hero-end));
+}
+.section     { background: var(--color-surface); }
+.section-alt { background: var(--color-brand-100); } /* light blue wash */
+
+/* --- Links --- */
+@layer components {
+  .link      { @apply underline decoration-transparent transition; color: var(--color-brand); }
+  .link:hover{ @apply underline; color: var(--color-accent); }
+
+  /* --- Buttons --- */
+  .btn { @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium transition; }
+  .btn-primary {
+    @apply text-white bg-gradient-to-r from-brand to-accent shadow;
+  }
+  .btn-primary:hover { @apply shadow-lg; }
+  .btn-outline {
+    @apply border bg-transparent;
+    color: var(--color-brand);
+    border-color: var(--color-brand);
+  }
+  .btn-outline:hover {
+    background: var(--color-brand-100);
+  }
+
+  /* --- Chips & Cards --- */
+  .chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm;
+    background: var(--color-brand-100);
+    color: var(--color-brand-700);
+  }
+  .card {
+    @apply rounded-xl border;
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* Optional: subtle divider class */
+.divider { border-top: 1px solid var(--color-border); }
+
+/* ===== UX polish utilities (non-boxy layout) ===== */
+@layer components {
+  /* Layout helpers */
+  .container { @apply max-w-[1200px] mx-auto px-4; }
+  .section-y { @apply py-16 md:py-24; }
+
+  /* Typographic chips */
+  .eyebrow {
+    @apply uppercase tracking-wider text-xs font-semibold;
+    color: var(--color-brand);
+    letter-spacing: 0.08em;
+  }
+  .lead { @apply text-lg md:text-xl; color: rgb(15 23 42 / 0.75); } /* text-ink/75 */
+
+  /* KPI gradient strip */
+  .kpi-strip {
+    background: linear-gradient(90deg, var(--color-brand-700), var(--color-brand-600), var(--color-accent));
+    color: #fff;
+  }
+  .kpi { @apply text-center; }
+  .kpi .num { @apply text-2xl md:text-3xl font-extrabold; }
+  .kpi .label { @apply text-xs md:text-sm opacity-90; }
+
+  /* Feature lists */
+  .feature-grid { @apply grid gap-4; }
+  .feature-item { @apply flex items-start gap-3; }
+  .feature-text { @apply text-sm md:text-base text-ink/80; }
+
+  /* Process timeline */
+  .timeline { @apply relative; }
+  .timeline:before {
+    content: "";
+    position: absolute;
+    left: 0.75rem; /* 12px */
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 2px;
+    background: var(--color-brand-200);
+  }
+  .timeline-item { @apply relative pl-8 pb-6; }
+  .timeline-dot {
+    position: absolute; left: 0.375rem; top: 0.25rem;
+    width: 12px; height: 12px; border-radius: 9999px;
+    background: var(--color-brand);
+    box-shadow: 0 0 0 4px var(--color-brand-100);
+  }
+
+  /* Packages (soft, not boxy) */
+  .package { @apply rounded-2xl p-6 border; border-color: var(--color-border); }
+  .package.highlight { background: var(--color-brand-50); border-color: var(--color-brand-200); }
+
+  /* Soft divider */
+  .soft-divider { border-top: 1px solid var(--color-border); }
+
+  /* Explicit semantic shortcuts (safety in case Tailwind tokens aren't generated) */
+  .text-ink { color: var(--color-ink); }
+  .bg-surface { background: var(--color-surface); }
+  .text-brand { color: var(--color-brand); }
+}
+
+/* Universal accessible focus ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+/* ===== Buttons, links, chips & motion (theme-consistent) ===== */
+@layer components {
+  /* Primary button with animated brand gradient */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold;
+    color: #fff;
+    background-image: linear-gradient(
+      90deg,
+      var(--color-brand-700),
+      var(--color-brand-600),
+      var(--color-accent)
+    );
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    box-shadow: 0 8px 24px rgba(2, 44, 88, 0.12);
+    transition: background-position .5s ease, transform .15s ease, box-shadow .2s ease;
+  }
+  .btn:hover {
+    background-position: 100% 50%;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(2, 44, 88, 0.16);
+  }
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(2, 44, 88, 0.18);
+  }
+  .btn-primary { } /* inherits .btn gradient */
+
+  /* Outline variant that matches the palette */
+  .btn-outline {
+    @apply border;
+    border-color: var(--color-brand-300);
+    color: var(--color-brand-800);
+    background: transparent;
+    box-shadow: none;
+  }
+  .btn-outline:hover { background: var(--color-brand-50); }
+
+  /* Small pill used in hero */
+  .chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium;
+    background: var(--color-brand-100);
+    color: var(--color-brand-800);
+    border: 1px solid var(--color-brand-200);
+  }
+
+  /* Brand links */
+  .link { color: var(--color-brand-800); font-weight: 600; }
+  .link:hover { color: var(--color-brand-900); text-decoration: underline; text-underline-offset: 3px; }
+}
+
+/* ===== Gentle scroll-reveal ===== */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.show { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.show { opacity: 1; transform: none; transition: none; }
+}
