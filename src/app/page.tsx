@@ -1,5 +1,5 @@
  "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 /* Fresh, Tailwind-free single-file homepage for Drs Pathway
    - Pure CSS (styled-jsx) + semantic HTML
    - Modern blue/teal palette
@@ -13,6 +13,10 @@ export default function Home() {
   const IG = "https://www.instagram.com/drspathway?igsh=bWJsdmozeWZwNWh5";
   const FB = "https://www.facebook.com/share/14Qt2FGdB9b/";
   const LI = "https://www.linkedin.com/company/drs-pathway";
+
+  const headerRef = useRef<HTMLElement | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     // Mark the DOM ready so CSS shows content before JS as a safety
@@ -37,10 +41,31 @@ export default function Home() {
     return () => io.disconnect();
   }, []);
 
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (!menuOpen) return;
+      const t = e.target as Node;
+      const inHeader = headerRef.current?.contains(t);
+      const inNav = navRef.current?.contains(t);
+      const inToggle = toggleRef.current?.contains(t);
+      if (!inHeader && !inNav && !inToggle) setMenuOpen(false);
+    };
+
+    const onScroll = () => { if (menuOpen) setMenuOpen(false); };
+
+    document.addEventListener('click', onDocClick);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener('click', onDocClick);
+      window.removeEventListener('scroll', onScroll as unknown as EventListener);
+    };
+  }, [menuOpen]);
+
   return (
     <main>
       {/* ===== Header ===== */}
-      <header className="site-header" role="banner">
+      <header ref={headerRef} className="site-header" role="banner">
         <div className="shell header-row">
           <a href="#home" className="brand" aria-label="Drs Pathway — Home">
             <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
@@ -48,6 +73,7 @@ export default function Home() {
           </a>
 
           <button
+            ref={toggleRef}
             className="nav-toggle"
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
@@ -56,7 +82,7 @@ export default function Home() {
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
           </button>
 
-          <nav className={`nav ${menuOpen ? "open" : ""}`} aria-label="Primary">
+          <nav ref={navRef} className={`nav ${menuOpen ? "open" : ""}`} aria-label="Primary">
             <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
             <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
             <a href="#packages" onClick={() => setMenuOpen(false)}>Packages</a>
@@ -69,6 +95,13 @@ export default function Home() {
 
       {/* ===== Hero ===== */}
       <section id="home" className="hero" role="region" aria-labelledby="hero-title">
+        {/* Background video */}
+        <video className="hero-video" autoPlay muted loop playsInline>
+          <source src="/video.mp4" type="video/mp4" />
+        </video>
+        {/* Sandglass/darken overlay */}
+        <div className="hero-overlay" aria-hidden="true" />
+
         <div className="shell hero-grid">
           <div className="hero-copy reveal">
             <p className="eyebrow">Guiding Your Medical Licensing Journey</p>
@@ -100,7 +133,6 @@ export default function Home() {
             </ul>
           </aside>
         </div>
-        <div className="hero-bg" aria-hidden="true" />
       </section>
 
 
@@ -647,9 +679,7 @@ export default function Home() {
         }
         html.reveal-ready .reveal.in { opacity: 1; transform: none; }
         /* Hero background animation */
-        .hero-bg {
-          animation: heroBgFadeIn 1.3s cubic-bezier(.37,.01,.63,.99);
-        }
+        .hero-overlay { animation: heroBgFadeIn 1.3s cubic-bezier(.37,.01,.63,.99); }
         @keyframes heroBgFadeIn {
           from { opacity: 0; }
           to { opacity: .9; }
@@ -807,13 +837,9 @@ export default function Home() {
         .btn--ghost:hover{ background:rgba(255,255,255,.06); }
 
         /* Hero */
-        .hero{ position:relative; background:var(--grad-hero); padding:72px 0; }
-        .hero-bg{ position:absolute; inset:0; pointer-events:none; background:
-          radial-gradient(900px 500px at -10% 100%, rgba(21,72,168,.2), transparent 60%),
-          radial-gradient(900px 500px at 110% 100%, rgba(32,223,201,.15), transparent 60%);
-          mix-blend: screen;
-          opacity:.9;
-        }
+        .hero{ position:relative; background:#000; padding:72px 0; }
+        .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+        .hero-overlay{ position:absolute; inset:0; z-index:-1; background: linear-gradient(160deg, rgba(10,18,36,.65), rgba(12,28,52,.65)), radial-gradient(1200px 600px at 15% 0%, rgba(46,124,246,.35), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(20,184,166,.28), transparent 60%); backdrop-filter: blur(6px); }
         .hero-grid{ position:relative; display:grid; grid-template-columns:1fr; gap:24px; }
         @media(min-width: 900px){ .hero-grid{ grid-template-columns:1.15fr .85fr; gap:40px; } }
         .eyebrow{ color:var(--teal-400); font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:.76rem; }
