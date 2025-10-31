@@ -159,7 +159,7 @@ export default function Home() {
             </h1>
             <p className="lead">
               Step‑by‑step support for healthcare professionals navigating <b>Dataflow</b>,{" "}
-              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>China Higher Education Student Information (CHSI)</b> 
+              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>China Higher Education Student Information (CHSI) verification</b> 
             </p>
             <div className="cta-row">
               <a href="#packages" className="btn btn--primary">View packages</a>
@@ -171,14 +171,14 @@ export default function Home() {
             <h3>Quick intro</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
-              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI),</b> 
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI) Verification, </b> 
               Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
               <li>Licensing Guidance</li>
               <li>Exam & Career Support</li>
               <li>Document Review</li>
-              <li>China Higher Education Student Information (CHSI) </li>
+              <li>China Higher Education Student Information (CHSI) verification </li>
             </ul>
           </aside>
         </div>
@@ -246,7 +246,7 @@ export default function Home() {
                 </svg>
                 <span>China Higher Education Student Information (CHSI) — coming soon</span>
               </h3>
-              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) verification.</p>
+              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) Verification.</p>
             </article>
             <article className="card reveal">
               <h3 className="icon-title">
@@ -306,9 +306,9 @@ export default function Home() {
                 <path d="M12 9l1.2 2.4 2.6.4-1.9 1.9.5 2.7L12 15.6l-2.4 1.8.5-2.7-1.9-1.9 2.6-.4L12 9z"/>
               </svg>
               <h3>Standard</h3>
-              <p className="muted">Basic + Prometric preparation</p>
-              <div className="price">SAR 500–700</div>
-              <a href="#contact" className="btn btn--primary">Choose Standard</a>
+              <p className="muted">Dataflow complete submission / SCFHS Mumaris Application Submission</p>
+              <div className="price"></div>
+              <a href="#contact" className="btn btn--primary">Get a Quote</a>
             </article>
             <article className="card pricing-card reveal">
               <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
@@ -316,9 +316,9 @@ export default function Home() {
                 <path d="M3 17h18"/>
               </svg>
               <h3>Premium</h3>
-              <p className="muted">Full support + Document review + Mentorship</p>
-              <div className="price">SAR 800–1,200</div>
-              <a href="#contact" className="btn btn--primary">Go Premium</a>
+              <p className="muted">Full support + Document review + Dataflow + SCFHS Mumaris Application Submission</p>
+              <div className="price"></div>
+              <a href="#contact" className="btn btn--primary">Get a Quote</a>
             </article>
           </div>
 
@@ -326,8 +326,8 @@ export default function Home() {
             <article className="card reveal">
               <h4>Add‑ons / Hourly</h4>
               <ul className="list">
-                <li><b>One‑to‑One Document Review</b>: SAR 100–150 / hour (typical 1–2 hours)</li>
-                <li><b>Mock test &amp; exam review</b>: SAR 100 / session</li>
+                <li><b>One‑to‑One Document Review</b></li>
+                <li><b>Mock test &amp; exam review</b></li>
               </ul>
             </article>
             <article className="card reveal">
@@ -465,7 +465,7 @@ export default function Home() {
         <div className="shell founder-grid">
           <div className="founder-visual">
             <div className="avatar-lg" aria-hidden="true" />
-            <p className="muted small" style={{marginTop:8}}>Replace with real photo at <code>/public/founder.jpg</code> (size ~800×1000).</p>
+            <p className="muted small" style={{marginTop:8}}></p>
           </div>
 
           <div className="founder-copy">
