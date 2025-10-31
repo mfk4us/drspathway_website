@@ -167,8 +167,8 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="hero-card reveal" aria-label="Quick intro">
-            <h3>Quick intro</h3>
+          <aside className="hero-card reveal" aria-label="Introduction">
+            <h3>Intoduction</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
               from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI) verification, </b> 
