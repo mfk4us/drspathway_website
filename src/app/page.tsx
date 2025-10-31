@@ -155,11 +155,11 @@ export default function Home() {
           <div className="hero-copy reveal">
             <p className="eyebrow">Guiding Your Medical Licensing Journey</p>
             <h1 id="hero-title" className="display">
-              Your trusted guide to medical registration in Saudi Arabia
+              Your trusted guide to medical registration in Middle East
             </h1>
             <p className="lead">
               Step‑by‑step support for healthcare professionals navigating <b>Dataflow</b>,{" "}
-              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>China Higher Education Student Information (CHSI)</b> — coming soon.
+              <b>SCFHS Mumaris+</b>, <b>Prometric</b>, and <b>China Higher Education Student Information (CHSI)</b> 
             </p>
             <div className="cta-row">
               <a href="#packages" className="btn btn--primary">View packages</a>
@@ -171,7 +171,7 @@ export default function Home() {
             <h3>Quick intro</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
-              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI)</b> — coming soon.
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI)</b> 
               Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
