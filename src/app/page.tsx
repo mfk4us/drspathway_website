@@ -246,7 +246,7 @@ export default function Home() {
                 </svg>
                 <span>China Higher Education Student Information (CHSI) — coming soon</span>
               </h3>
-              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) Verification.</p>
+              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) verification.</p>
             </article>
             <article className="card reveal">
               <h3 className="icon-title">
