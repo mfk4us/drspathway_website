@@ -670,7 +670,7 @@ export default function Home() {
               <li><a href="#services">SCFHS (Mumaris+)</a></li>
               <li><a href="#services">Prometric Support</a></li>
               <li><a href="#services">Document Review</a></li>
-              <li><a href="#services">CHSI (Soon)</a></li>
+              <li><a href="#services">CHSI verification (Soon)</a></li>
             </ul>
           </nav>
 
