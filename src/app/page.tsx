@@ -171,7 +171,7 @@ export default function Home() {
             <h3>Quick intro</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
-              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information,  (CHSI)</b> 
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI),</b> 
               Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
@@ -295,9 +295,9 @@ export default function Home() {
                 <rect x="7" y="7" width="14" height="14" rx="2"/>
               </svg>
               <h3>Basic</h3>
-              <p className="muted">Dataflow + Mumaris+ registration guidance</p>
-              <div className="price">SAR 250–400</div>
-              <a href="#contact" className="btn btn--primary">Get started</a>
+              <p className="muted">Document Review + One-to-One Counselling Session</p>
+              <div className="price"></div>
+              <a href="#contact" className="btn btn--primary">Get a Quote</a>
             </article>
             <article className="card pricing-card featured reveal">
               <div className="flag">Most Popular</div>
