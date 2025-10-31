@@ -449,11 +449,11 @@ export default function Home() {
           <div className="cards-2">
             <blockquote className="card quote reveal">
               <p>“Thanks to Dr’s Pathway, I completed my SCFHS registration smoothly and started my practice in Saudi Arabia. Highly recommend!”</p>
-              <cite>— Client: Anonymous</cite>
+              <cite> Client Name: Anonymous</cite>
             </blockquote>
             <blockquote className="card quote reveal">
               <p>“The one‑to‑one document review session was a game‑changer. Everything was accurate and ready for submission.”</p>
-              <cite>— Client: Anonymous</cite>
+              <cite>Client Name: Anonymous</cite>
             </blockquote>
           </div>
         </div>
