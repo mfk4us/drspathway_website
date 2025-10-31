@@ -171,7 +171,7 @@ export default function Home() {
             <h3>Quick intro</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
-              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI) Verification, </b> 
+              from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI) verification, </b> 
               Clear checklists, one‑to‑one support, and fast follow‑ups keep you moving without stress.
             </p>
             <ul className="chips">
