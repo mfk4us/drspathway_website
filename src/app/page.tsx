@@ -438,7 +438,7 @@ export default function Home() {
               <div className="label">Successful registrations</div>
             </div>
             <div className="stat">
-              <div className="num">95%</div>
+              <div className="num">96%</div>
               <div className="label">Client satisfaction</div>
             </div>
             <div className="stat">
@@ -670,7 +670,7 @@ export default function Home() {
               <li><a href="#services">SCFHS (Mumaris+)</a></li>
               <li><a href="#services">Prometric Support</a></li>
               <li><a href="#services">Document Review</a></li>
-              <li><a href="#services">CHSI verification (Soon)</a></li>
+              <li><a href="#services">CHSI verification </a></li>
             </ul>
           </nav>
 
