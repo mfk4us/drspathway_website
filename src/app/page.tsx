@@ -19,6 +19,45 @@ export default function Home() {
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasVideo, setHasVideo] = useState(false);
+  const [legalOpen, setLegalOpen] = useState(true);
+  const legalAcknowledge = () => { setLegalOpen(false); };
+
+  // Why Us — tabs/slider data
+  const [whyTab, setWhyTab] = useState(0);
+  const WHY = [
+    {
+      title: "Doctor‑led expertise",
+      desc: "All guidance is led by practicing physicians who understand SCFHS/Mumaris+ from the inside.",
+      points: [
+        "Up‑to‑date pathways & requirements",
+        "Tailored checklists for your case",
+        "Prometric prep & strategy support",
+      ],
+    },
+    {
+      title: "One‑to‑one, personalized",
+      desc: "Direct private sessions and line‑by‑line document review — not generic templates.",
+      points: [
+        "Live review on Zoom/WhatsApp",
+        "Corrections + final pre‑submission check",
+        "Follow‑up until closure",
+      ],
+    },
+    {
+      title: "Transparent & ethical",
+      desc: "We provide guidance & documentation assistance — not a recruitment or licensing agency.",
+      points: [
+        "Clear scope & fees before start",
+        "No false guarantees",
+        "You own all accounts & submissions",
+      ],
+    },
+    {
+      title: "Fast communication",
+      desc: "Stay moving with proactive status checks and reminders.",
+      points: ["24‑hour response target", "Structured issue escalation", "Progress updates in one place"],
+    },
+  ];
 
   useEffect(() => {
     // Mark the DOM ready so CSS shows content before JS as a safety
@@ -282,7 +321,68 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Why Us (Tabs on desktop, slider on mobile) ===== */}
+      <section id="why" className="band band--light" aria-labelledby="why-title">
+        <div className="shell">
+          <h2 id="why-title">Why choose Dr’s Pathway?</h2>
+          <p className="muted" style={{marginTop: 4}}>Clear value, real results — built around how clinicians actually work.</p>
 
+          {/* Tabs (desktop & tablet) */}
+          <div className="why-tabs" aria-label="Reasons to choose us">
+            <div className="why-tablist" role="tablist" aria-orientation="horizontal">
+              {WHY.map((item, i) => (
+                <button
+                  key={i}
+                  role="tab"
+                  id={`why-tab-${i}`}
+                  aria-selected={whyTab === i}
+                  aria-controls={`why-panel-${i}`}
+                  className="why-tab"
+                  onClick={() => setWhyTab(i)}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+
+            <article
+              role="tabpanel"
+              id={`why-panel-${whyTab}`}
+              aria-labelledby={`why-tab-${whyTab}`}
+              className="card why-panel"
+            >
+              <h3 className="icon-title">
+                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2l3 6 6 .9-4.4 4.3 1 6-5.6-3-5.6 3 1-6L3 8.9 9 8z"/>
+                </svg>
+                <span>{WHY[whyTab].title}</span>
+              </h3>
+              <p>{WHY[whyTab].desc}</p>
+              <ul className="list">
+                {WHY[whyTab].points.map((p: string, j: number) => <li key={j}>{p}</li>)}
+              </ul>
+            </article>
+          </div>
+
+          {/* Slider (mobile) */}
+          <div className="why-slider" aria-label="Why choose Dr’s Pathway — swipe left/right">
+            {WHY.map((item, i) => (
+              <article key={i} className="card why-slide">
+                <h3 className="icon-title">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2l3 6 6 .9-4.4 4.3 1 6-5.6-3-5.6 3 1-6L3 8.9 9 8z"/>
+                  </svg>
+                  <span>{item.title}</span>
+                </h3>
+                <p>{item.desc}</p>
+                <ul className="list">
+                  {item.points.map((p: string, j: number) => <li key={j}>{p}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ===== Packages ===== */}
       <section id="packages" className="band band--light" aria-labelledby="packages-title">
@@ -299,8 +399,7 @@ export default function Home() {
               <div className="price"></div>
               <a href="#contact" className="btn btn--primary">Get a Quote</a>
             </article>
-            <article className="card pricing-card featured reveal">
-              <div className="flag">Most Popular</div>
+            <article className="card pricing-card reveal">
               <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
                 <path d="M12 9l1.2 2.4 2.6.4-1.9 1.9.5 2.7L12 15.6l-2.4 1.8.5-2.7-1.9-1.9 2.6-.4L12 9z"/>
@@ -310,7 +409,8 @@ export default function Home() {
               <div className="price"></div>
               <a href="#contact" className="btn btn--primary">Get a Quote</a>
             </article>
-            <article className="card pricing-card reveal">
+            <article className="card pricing-card featured reveal">
+              <div className="flag">Most Popular</div>
               <svg className="i-lg-stroke" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 8l4 3 5-6 5 6 4-3v9H3V8z"/>
                 <path d="M3 17h18"/>
@@ -418,7 +518,14 @@ export default function Home() {
               { name: "Dr. Muhammad", role: "Career Planning Expert", expertise: "Career Pathways & Exam Strategy" },
             ].map((x, i) => (
               <article key={i} className="card expert reveal">
-                <div className="avatar" aria-hidden="true" />
+                <div className="expert-figure">
+                  <img
+                    src={x.name.includes("Rabbia") ? "/femaledoctor.svg" : "/maledoctor.svg"}
+                    alt={`Illustration: ${x.name}`}
+                    className="expert-avatar"
+                    loading="lazy"
+                  />
+                </div>
                 <h3>{x.name}</h3>
                 <p className="muted">{x.role}</p>
                 <p>{x.expertise}</p>
@@ -464,7 +571,7 @@ export default function Home() {
       <section id="about" className="band band--light" aria-labelledby="about-title">
         <div className="shell founder-grid">
           <div className="founder-visual">
-            <div className="avatar-lg" aria-hidden="true" />
+            <img src="/founder.jpg" alt="Dr. Saad Khan — Founder" className="avatar-lg" loading="lazy" />
             <p className="muted small" style={{marginTop:8}}></p>
           </div>
 
@@ -622,10 +729,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Footer Persistent Legal Popup ===== */}
+      {legalOpen && (
+        <div className="legal-pop" role="dialog" aria-modal="false" aria-label="Important disclaimer">
+          <div className="bar">
+            <svg className="disc-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2l10 18H2L12 2z"/><path d="M12 9v5"/><circle cx="12" cy="17" r="1.2"/>
+            </svg>
+            <span className="msg">Guidance &amp; documentation assistance — not a recruitment or licensing agency.</span>
+            <button className="btn btn--primary btn-sm" onClick={legalAcknowledge} aria-label="Acknowledge disclaimer">I understand</button>
+          </div>
+        </div>
+      )}
+
       {/* ===== Footer ===== */}
-      <footer className="site-footer" role="contentinfo">
-        <div className="shell footer-grid">
-          <div className="f-col brand-col">
+      <footer className="footer-min" role="contentinfo">
+        <div className="shell f-min-grid">
+          <div className="f-min-brand">
             <a href="#home" className="brand" aria-label="Drs Pathway — Home">
               <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
               <span className="brand-text">Drs Pathway</span>
@@ -652,48 +772,96 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-          <nav className="f-col" aria-label="Footer — Explore">
-            <h4>Explore</h4>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#packages">Packages</a></li>
-              <li><a href="#experts">Experts</a></li>
-            </ul>
-          </nav>
-
-          <nav className="f-col" aria-label="Footer — Services">
-            <h4>Services</h4>
-            <ul>
-              <li><a href="#services">Dataflow Guidance</a></li>
-              <li><a href="#services">SCFHS (Mumaris+)</a></li>
-              <li><a href="#services">Prometric Support</a></li>
-              <li><a href="#services">Document Review</a></li>
-              <li><a href="#services">CHSI verification </a></li>
-            </ul>
-          </nav>
-
-          <div className="f-col cta-col">
-            <h4>Start your pathway</h4>
-            <p className="muted small">Tell us your profession and current stage — we’ll guide you step by step.</p>
+  
+          <div className="f-min-links" aria-label="Site links">
+            <div>
+              <h4>Explore</h4>
+              <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#experts">Experts</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Services</h4>
+              <ul>
+                <li><a href="#services">Dataflow Guidance</a></li>
+                <li><a href="#services">SCFHS (Mumaris+)</a></li>
+                <li><a href="#services">Prometric Support</a></li>
+                <li><a href="#services">Document Review</a></li>
+                <li><a href="#services">CHSI verification</a></li>
+              </ul>
+            </div>
+          </div>
+  
+          <div className="f-min-contact" aria-label="Contact">
+            <h4>Contact</h4>
+            <p className="muted small">We’ll get back to you within 24 hours.</p>
             <div className="cta-row">
-              <a className="btn btn--primary" href="#contact">Get Started</a>
-              <a className="btn btn--ghost" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a>
+              <a className="btn btn--primary btn-sm" href="#contact">Get Started</a>
+              <a className="btn btn--ghost btn-sm" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
           </div>
         </div>
-
-        <div className="footer-bottom">
-          <div className="shell footer-bottom-row">
-            <div className="muted small" suppressHydrationWarning>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</div>
-            <div className="muted small">Guidance & documentation assistance — not a recruitment or licensing agency.</div>
+  
+  
+        <div className="f-min-bar">
+          <div className="shell f-min-bar-row">
+            <small suppressHydrationWarning>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</small>
+            <ul className="legal">
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+            </ul>
           </div>
         </div>
       </footer>
 
       {/* ===== Styles ===== */}
       <style>{`
+        /* Legal persistent footer popup (floating pill — blue accent) */
+        .legal-pop{
+          position:fixed; left:50%; transform:translateX(-50%);
+          bottom:calc(28px + env(safe-area-inset-bottom)); z-index:9999;
+          pointer-events:none; /* allow clicks to pass outside the pill */
+        }
+        .legal-pop .bar{
+          pointer-events:auto;
+          display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+          gap:14px; padding:16px 20px;
+          background:#102448; /* lighter navy to stand out */
+          border:1px solid var(--blue-600);
+          border-radius:16px;
+          box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06) inset;
+          width:calc(100vw - 40px);
+          max-width:1000px;
+          animation: glowPulseBlue 2.2s ease-in-out infinite;
+        }
+        .legal-pop .disc-icon{ width:20px; height:20px; stroke: var(--blue-500); }
+        .legal-pop .msg{
+          color:#fff; font-weight:900; letter-spacing:.25px; text-align:center;
+          font-size:1.02rem;
+        }
+        .legal-pop .btn--primary{
+          background: linear-gradient(90deg, var(--blue-800), var(--blue-600), var(--blue-500));
+          box-shadow: 0 10px 26px rgba(46,124,246,.35);
+          color:#ffffff;
+        }
+        @media(max-width: 520px){
+          .legal-pop{ bottom: calc(16px + env(safe-area-inset-bottom)); }
+          .legal-pop .bar{
+            padding:10px 12px; gap:10px; border-radius:12px;
+            width: calc(100vw - 24px);
+          }
+          .legal-pop .disc-icon{ width:16px; height:16px; }
+          .legal-pop .msg{ font-size:.85rem; line-height:1.25; }
+          .legal-pop .btn--primary.btn-sm{ padding:.45rem .7rem; font-size:.82rem; border-radius:8px; }
+        }
+        @keyframes glowPulseBlue{
+          0%,100%{ box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 0 0 0 rgba(46,124,246,0), 0 0 0 1px rgba(255,255,255,.06) inset; }
+          50%{ box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 0 0 12px rgba(46,124,246,.14), 0 0 0 1px rgba(255,255,255,.06) inset; }
+        }
         /* FAQs */
         .faqs{ display:grid; gap:12px; margin-top:12px; }
         .faq{ background:#0c1529; border:1px solid var(--border); border-radius:12px; padding:0; box-shadow: var(--shadow); }
@@ -771,36 +939,43 @@ export default function Home() {
         .founder-grid{ display:grid; grid-template-columns:1fr; gap:24px; }
         @media(min-width: 980px){ .founder-grid{ grid-template-columns: .9fr 1.1fr; gap:40px; align-items:center; } }
         .founder-visual{ display:grid; justify-items:center; }
-        .avatar-lg{ width:100%; max-width:420px; aspect-ratio:4/5; border-radius:18px; border:1px solid var(--border);
-          background: linear-gradient(135deg, rgba(46,124,246,.28), rgba(20,184,166,.18)); box-shadow: var(--shadow); }
+        .avatar-lg{
+          width:100%; max-width:420px; aspect-ratio:4/5;
+          border-radius:18px; border:1px solid var(--border);
+          object-fit:cover; display:block;
+          background: linear-gradient(135deg, rgba(46,124,246,.18), rgba(20,184,166,.12)); /* subtle fallback if image fails */
+          box-shadow: var(--shadow);
+        }
         .founder-copy h2{ margin-top:0; }
         .badge-row{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:10px; }
         .badge-row .badge{ background:#0a1d3a; border:1px solid rgba(255,255,255,.08); color:#e8f1ff; }
 
-        /* Footer */
-        .site-footer{ border-top:1px solid var(--border); background:#0A1220; }
-        .footer-grid{ display:grid; grid-template-columns:1fr; gap:32px; padding:48px 0; }
-        @media(min-width: 900px){
-          .footer-grid{ grid-template-columns: 1.2fr .9fr .9fr 1.1fr; column-gap:44px; row-gap:36px; }
-        }
-        .f-col h4{ margin:0 0 .9rem 0; font-weight:900; }
-        .f-col ul{ list-style:none; padding:0; margin:0; display:grid; gap:.6rem; }
-        .f-col a{ color:#b8c8e6; }
-        .f-col a:hover{ color:#fff; }
-        .brand-col .brand{ padding:0; }
-        .brand-col p{ margin:10px 0 12px; }
-        .f-col p{ margin:0 0 12px; }
-        .f-col{ line-height:1.7; }
-        .f-social{ display:flex; gap:10px; margin-top:10px; }
-
-        .footer-bottom{ border-top:1px solid var(--border); background:#09101e; }
-        .footer-bottom-row{ display:flex; gap:20px; align-items:center; justify-content:space-between; padding:20px 0; flex-wrap:wrap; }
+        /* Footer (minimal) */
+        .footer-min{ background:#0A1220; border-top:1px solid var(--border); }
+        .f-min-grid{ display:grid; grid-template-columns:1fr; row-gap:40px; column-gap:40px; padding:80px 0 64px; }
+        @media(min-width: 900px){ .f-min-grid{ grid-template-columns:1.2fr 1fr 1fr; column-gap:84px; row-gap:52px; padding-top:96px; padding-bottom:72px; } }
+        .f-min-brand .brand{ padding:0; }
+        .f-min-brand p{ margin:10px 0 12px; }
+        .f-min-brand, .f-min-links, .f-min-contact{ padding-top:6px; }
         @media(min-width: 1200px){
-          .footer-grid{ padding:72px 0; column-gap:48px; row-gap:40px; }
-          .f-col h4{ margin:0 0 1rem 0; }
-          .f-col ul{ gap:.75rem; }
-          .footer-bottom-row{ padding:24px 0; gap:24px; }
+          .footer-min .shell{ padding-left:32px; padding-right:32px; }
+          .f-min-grid{ padding-top:112px; padding-bottom:80px; }
         }
+        .f-min-links{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+        @media(max-width: 700px){ .f-min-links{ grid-template-columns:1fr; } }
+        .f-min-links h4{ margin:0 0 .8rem; font-weight:900; }
+        .f-min-links ul{ list-style:none; padding:0; margin:0; display:grid; gap:.55rem; }
+        .f-min-links a{ color:#b8c8e6; font-weight:700; }
+        .f-min-links a:hover{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+        .btn-sm{ padding:.6rem .9rem; border-radius:10px; }
+        
+        .disc-icon{ width:18px; height:18px; fill:none; stroke:#eaf2ff; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+        
+        .f-min-bar{ background:#09101e; border-top:1px solid var(--border); }
+        .f-min-bar-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; flex-wrap:wrap; }
+        .legal{ list-style:none; padding:0; margin:0; display:flex; gap:14px; }
+        .legal a{ color:#b8c8e6; }
+        .legal a:hover{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
         :root{
           --bg:#0B1220;           /* page background */
           --surface:#0E1626;      /* headers/sections */
@@ -815,6 +990,9 @@ export default function Home() {
           --blue-800:#0F377F;
           --teal-400:#20DFC9;
           --teal-500:#14B8A6;
+          --warn-500:#F59E0B;
+          --warn-600:#D97706;
+          --warn-700:#B45309;
 
           --grad-hero: radial-gradient(1200px 600px at 10% -10%, rgba(46,124,246,0.35), transparent 60%),
                        radial-gradient(900px 500px at 90% 10%, rgba(20,184,166,0.25), transparent 60%),
@@ -952,6 +1130,31 @@ export default function Home() {
         .mt{ margin-top: 18px; }
 
         /* Pricing */
+        /* Why Us */
+        .why-tabs{ display:none; margin-top:8px; }
+        .why-tablist{ display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 10px; }
+        .why-tab{
+          -webkit-appearance:none; appearance:none; cursor:pointer;
+          padding:.55rem .8rem; border-radius:999px; font-weight:900; letter-spacing:.2px;
+          background:transparent; color:#cfe0ff; border:1px solid var(--border);
+          transition: background .2s ease, color .2s ease, transform .1s ease, border .2s ease;
+        }
+        .why-tab[aria-selected="true"]{
+          background: linear-gradient(90deg, var(--blue-800), var(--blue-600));
+          color:#fff; border-color:transparent; box-shadow: 0 8px 24px rgba(46,124,246,.25);
+        }
+        .why-tab:active{ transform: translateY(1px); }
+        .why-panel{ margin-top:12px; }
+
+        /* Mobile slider */
+        .why-slider{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 2px 8px; margin-top:8px; }
+        .why-slide{ min-width:85%; scroll-snap-align:start; }
+
+        /* Breakpoints: show tabs on >=800px, slider on <800px */
+        @media(min-width: 800px){
+          .why-tabs{ display:block; }
+          .why-slider{ display:none; }
+        }
         .pricing{ display:grid; gap:16px; grid-template-columns: 1fr; }
         @media(min-width: 900px){ .pricing{ grid-template-columns: repeat(3, 1fr); } }
         .pricing-card{ text-align:center; }
@@ -964,10 +1167,27 @@ export default function Home() {
         }
 
         /* Experts */
-        .expert .avatar{
-          height:120px; border-radius:12px; margin-bottom:10px;
-          background: linear-gradient(135deg, rgba(46,124,246,.35), rgba(20,184,166,.25));
+        .expert-figure{
           border:1px solid var(--border);
+          background:#0F1B31;
+          border-radius:12px;
+          padding:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          min-height:173px; /* +25% from previous 138px */
+          margin-bottom:10px;
+        }
+        .expert-avatar{
+          max-width:90%;
+          max-height:173px; /* +25% from previous 138px */
+          height:auto;
+          object-fit:contain;
+          display:block;
+        }
+        @media(min-width: 900px){
+          .expert-figure{ min-height:204px; } /* +25% from previous 163px */
+          .expert-avatar{ max-height:204px; } /* +25% from previous 163px */
         }
 
         /* Quotes */
