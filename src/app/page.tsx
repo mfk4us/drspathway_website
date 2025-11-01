@@ -742,78 +742,45 @@ export default function Home() {
         </div>
       )}
 
-      {/* ===== Footer ===== */}
-      <footer className="footer-min" role="contentinfo">
-        <div className="shell f-min-grid">
-          <div className="f-min-brand">
-            <a href="#home" className="brand" aria-label="Drs Pathway — Home">
-              <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
-              <span className="brand-text">Drs Pathway</span>
+      {/* ===== Footer (flat centered) ===== */}
+      <footer className="footer-min footer-flat" role="contentinfo">
+        <div className="shell footer-flat-top">
+          <div className="footer-brand" aria-label="Brand">
+            <img src="/logo.png" width={56} height={56} alt="Drs Pathway logo" className="footer-logo" />
+            <span className="footer-name">Drs Pathway</span>
+          </div>
+
+          <hr className="footer-sep" aria-hidden="true" />
+
+          <p className="footer-desc">
+            Step‑by‑step licensing guidance for healthcare professionals — Dataflow, SCFHS (Mumaris+), Prometric, and CHSI verification.
+          </p>
+
+          <div className="footer-social-row">
+            <a href={IG} target="_blank" rel="noreferrer" aria-label="Instagram (opens in a new tab)">
+              <span className="sr-only">Instagram</span>
+              <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
+              </svg>
             </a>
-            <p className="muted small">Your trusted guide to medical registration in Saudi Arabia.</p>
-            <div className="f-social">
-              <a href={IG} target="_blank" rel="noreferrer" aria-label="Instagram (opens in a new tab)">
-                <span className="sr-only">Instagram</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
-                </svg>
-              </a>
-              <a href={FB} target="_blank" rel="noreferrer" aria-label="Facebook (opens in a new tab)">
-                <span className="sr-only">Facebook</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.7-1.5H17V5.1C16.5 5 15.3 5 14 5c-2.4 0-4 1.4-4 4v2.9H7.5v3H10v8z"/>
-                </svg>
-              </a>
-              <a href={LI} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
-                <span className="sr-only">LinkedIn</span>
-                <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7.5 0h4.8v2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V22h-5v-6.4c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V22h-5V8z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-  
-          <div className="f-min-links" aria-label="Site links">
-            <div>
-              <h4>Explore</h4>
-              <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#packages">Packages</a></li>
-                <li><a href="#experts">Experts</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4>Services</h4>
-              <ul>
-                <li><a href="#services">Dataflow Guidance</a></li>
-                <li><a href="#services">SCFHS (Mumaris+)</a></li>
-                <li><a href="#services">Prometric Support</a></li>
-                <li><a href="#services">Document Review</a></li>
-                <li><a href="#services">CHSI verification</a></li>
-              </ul>
-            </div>
-          </div>
-  
-          <div className="f-min-contact" aria-label="Contact">
-            <h4>Contact</h4>
-            <p className="muted small">We’ll get back to you within 24 hours.</p>
-            <div className="cta-row">
-              <a className="btn btn--primary btn-sm" href="#contact">Get Started</a>
-              <a className="btn btn--ghost btn-sm" href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a>
-            </div>
+            <a href={FB} target="_blank" rel="noreferrer" aria-label="Facebook (opens in a new tab)">
+              <span className="sr-only">Facebook</span>
+              <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.7-1.5H17V5.1C16.5 5 15.3 5 14 5c-2.4 0-4 1.4-4 4v2.9H7.5v3H10v8z"/>
+              </svg>
+            </a>
+            <a href={LI} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
+              <span className="sr-only">LinkedIn</span>
+              <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7.5 0h4.8v2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V22h-5v-6.4c0-1.52-.03-3.48-2.12-3.48-2.12 0-2.44 1.65-2.44 3.36V22h-5V8z"/>
+              </svg>
+            </a>
           </div>
         </div>
-  
-  
-        <div className="f-min-bar">
-          <div className="shell f-min-bar-row">
+
+        <div className="footer-bottom-bar">
+          <div className="shell">
             <small suppressHydrationWarning>© {new Date().getFullYear()} Drs Pathway. All rights reserved.</small>
-            <ul className="legal">
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#">Privacy</a></li>
-              <li><a href="#">Terms</a></li>
-            </ul>
           </div>
         </div>
       </footer>
@@ -926,11 +893,14 @@ export default function Home() {
 
         /* Social icon styling */
         .icon{ width:22px; height:22px; display:block; fill:#cfe0ff; transition: fill .2s ease, transform .12s ease; }
-        .social a, .f-social a{ display:inline-grid; place-items:center; width:36px; height:36px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); }
+        .social a, .f-social a{
+          display:inline-grid; place-items:center; width:40px; height:40px;
+          border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06);
+        }
         .social a:hover .icon, .f-social a:hover .icon{ fill:#ffffff; }
         .social a:hover, .f-social a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.1); }
-        .social{ gap:.6rem; }
-        .f-social{ gap:.6rem; }
+        .social{ gap:.8rem; }
+        .f-social{ gap:.9rem; margin-top:8px; flex-wrap:wrap; }
         /* Contact CTAs */
         .contact-ctas .badges{ display:flex; gap:.5rem; flex-wrap:wrap; margin: 6px 0 10px; }
         .badge{ background: rgba(255,255,255,.1); border:1px solid var(--border); color:#e8f2ff; padding:.3rem .6rem; border-radius:999px; font-size:.72rem; font-weight:800; }
@@ -951,10 +921,49 @@ export default function Home() {
         .badge-row .badge{ background:#0a1d3a; border:1px solid rgba(255,255,255,.08); color:#e8f1ff; }
 
         /* Footer (minimal) */
+        /* Footer — centered flat variant */
+        .footer-flat-top{ padding:72px 0 64px; text-align:center; }
+        .footer-nav{
+          list-style:none; padding:0; margin:0 0 28px;
+          display:flex; flex-wrap:wrap; justify-content:center;
+          gap:clamp(18px,6vw,64px);
+          font-weight:900; letter-spacing:.04em; text-transform:uppercase;
+        }
+        .footer-nav a{ color:#eaf2ff; opacity:.92; }
+        .footer-nav a:hover{ opacity:1; text-decoration:underline; text-underline-offset:6px; }
+        .footer-brand{
+          display:flex; align-items:center; justify-content:center; gap:12px;
+          margin:18px auto 18px;
+        }
+        .footer-logo{ width:56px; height:56px; border-radius:12px; display:block; }
+        .footer-name{ font-weight:900; font-size:clamp(1.6rem,4vw,2rem); letter-spacing:.02em; }
+        .footer-sep{
+          height:1px; border:0; background:rgba(255,255,255,.18);
+          max-width:840px; margin:12px auto 24px;
+        }
+        .footer-desc{
+          max-width:900px; margin:0 auto 22px;
+          color:#cfe0ff; font-weight:700; line-height:1.7;
+        }
+        .footer-social-row{
+          display:flex; justify-content:center; align-items:center; gap:18px; margin-top:16px; margin-bottom:18px;
+        }
+        .footer-social-row a{
+          display:grid; place-items:center; width:44px; height:44px;
+          border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06);
+        }
+        .footer-bottom-bar{ background:#09101e; border-top:1px solid var(--border); text-align:center; }
+        .footer-bottom-bar .shell{ padding:16px 0; }
+        .footer-bottom-bar small{ color:#b8c8e6; }
+        @media(max-width:520px){
+          .footer-flat-top{ padding:48px 0 34px; }
+          .footer-nav{ gap:18px; }
+          .footer-social-row a{ width:40px; height:40px; border-radius:10px; }
+        }
         .footer-min{ background:#0A1220; border-top:1px solid var(--border); }
         .f-min-grid{ display:grid; grid-template-columns:1fr; row-gap:40px; column-gap:40px; padding:80px 0 64px; }
-        @media(min-width: 900px){ .f-min-grid{ grid-template-columns:1.2fr 1fr 1fr; column-gap:84px; row-gap:52px; padding-top:96px; padding-bottom:72px; } }
-        .f-min-brand .brand{ padding:0; }
+        @media(min-width: 900px){ .f-min-grid{ grid-template-columns:1.2fr 1fr; column-gap:96px; row-gap:52px; padding-top:96px; padding-bottom:72px; } }
+        .f-min-brand .brand{ padding:0; margin-bottom:10px; }
         .f-min-brand p{ margin:10px 0 12px; }
         .f-min-brand, .f-min-links, .f-min-contact{ padding-top:6px; }
         @media(min-width: 1200px){
@@ -962,9 +971,20 @@ export default function Home() {
           .f-min-grid{ padding-top:112px; padding-bottom:80px; }
         }
         .f-min-links{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+        @media(min-width: 900px){
+          .f-min-links{ position:relative; padding-left:36px; }
+          .f-min-links::before{
+            content:""; position:absolute; left:0; top:0; bottom:0; width:1px;
+            background: linear-gradient(180deg, transparent 0, rgba(255,255,255,.16) 12%, rgba(255,255,255,.16) 88%, transparent 100%);
+          }
+        }
         @media(max-width: 700px){ .f-min-links{ grid-template-columns:1fr; } }
         .f-min-links h4{ margin:0 0 .8rem; font-weight:900; }
-        .f-min-links ul{ list-style:none; padding:0; margin:0; display:grid; gap:.55rem; }
+        .f-min-links ul{ list-style:none; padding:0; margin:0; display:grid; gap:.7rem; }
+        /* Footer services list → two columns on desktop */
+        @media(min-width: 700px){
+          .f-min-links ul.two-col{ grid-template-columns: 1fr 1fr; column-gap:24px; }
+        }
         .f-min-links a{ color:#b8c8e6; font-weight:700; }
         .f-min-links a:hover{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
         .btn-sm{ padding:.6rem .9rem; border-radius:10px; }
@@ -1216,6 +1236,8 @@ export default function Home() {
 
         .muted{ color: var(--muted); }
         .small{ font-size: .85rem; }
+        .xsmall{ font-size:.78rem; }
+        .f-social-label{ display:block; margin-top:2px; opacity:.9; }
 
         /* Forms */
         .form{ display:grid; gap:10px; }
@@ -1230,6 +1252,10 @@ export default function Home() {
 
 
         @media(max-width: 520px){
+        @media(max-width: 380px){
+          .f-social{ gap:.6rem; }
+          .f-social a{ width:36px; height:36px; border-radius:9px; }
+        }
           .footer-bottom-row{ flex-direction: column; align-items: flex-start; gap:8px; }
         }
 
