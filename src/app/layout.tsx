@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -153,12 +154,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.className}>
       <head>
-        {/* Google tag (gtag.js) */}
         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-L32Y1ZQ221"
+          type="application/ld+json"
+          suppressHydrationWarning
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
+        <meta name="theme-color" content="#0B1424" />
+      </head>
+      <body>
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-L32Y1ZQ221"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="ga4-init"
+          strategy="afterInteractive"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `
@@ -169,16 +181,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <meta name="theme-color" content="#0B1424" />
-      </head>
-      <body>
         <header
           className="site-header"
           role="banner"
