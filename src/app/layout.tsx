@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,17 +15,24 @@ export const metadata: Metadata = {
     template: "%s | Drs Pathway",
   },
   description:
-    "Professional, paid consultancy guiding healthcare professionals through Saudi medical licensing — Dataflow, SCFHS (Mumaris+), Prometric, and CHSI (coming soon).",
+    "Professional, paid consultancy guiding healthcare professionals through Saudi & GCC medical licensing — Dataflow verification, SCFHS (Mumaris+), exam registration and CHSI support.",
   keywords: [
+    "Drs Pathway",
+    "Saudi medical licensing",
+    "GCC healthcare licensing",
     "SCFHS",
     "Mumaris+",
-    "Dataflow",
-    "Prometric",
-    "Saudi medical licensing",
-    "KSA doctor license",
+    "Dataflow verification",
+    "Dataflow Saudi Arabia",
+    "Dataflow GCC",
+    "Saudi Medical Licensing Exam",
+    "SMLE",
+    "Prometric exam registration",
     "CHSI verification",
-    "medical licensing guidance",
-    "Drs Pathway",
+    "doctor license Saudi Arabia",
+    "nurse license Saudi Arabia",
+    "pharmacist license Saudi Arabia",
+    "medical licensing consultancy",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -33,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Drs Pathway",
     title: "Drs Pathway — Medical Licensing Guidance (Saudi Arabia)",
     description:
-      "Step‑by‑step support for healthcare professionals navigating Dataflow, SCFHS Mumaris+, Prometric, and CHSI.",
+      "Step‑by‑step, doctor‑led support for Dataflow verification, SCFHS Mumaris+, exam registration and CHSI verification for Saudi Arabia and the wider GCC.",
     images: [
       {
         url: "/og-cover.png",
@@ -47,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Drs Pathway — Medical Licensing Guidance (Saudi Arabia)",
     description:
-      "Professional consultancy for Dataflow, SCFHS, Prometric, and CHSI (coming soon).",
+      "Doctor‑led consultancy for Dataflow, SCFHS Mumaris+, exam registration and CHSI verification for Saudi and GCC healthcare professionals.",
     images: ["/og-cover.png"],
   },
   icons: {
@@ -58,68 +66,256 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/logo.png", sizes: "180x180" }],
   },
+  other: {
+    "geo.region": "SA-02",
+    "geo.placename": "Jeddah",
+    "geo.position": "21.4858;39.1925",
+    ICBM: "21.4858, 39.1925",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Drs Pathway",
-    url: "https://drspathway.com/",
-    brand: "Drs Pathway",
-    slogan: "Your trusted guide to medical registration in Saudi Arabia",
-    sameAs: [
-      "https://www.instagram.com/drspathway",
-      "https://www.facebook.com/share/14Qt2FGdB9b/",
-      "https://www.linkedin.com/company/drs-pathway",
-    ],
-    areaServed: {
-      "@type": "Country",
-      name: "Saudi Arabia",
-    },
-    offers: {
-      "@type": "Offer",
-      category: "Consulting",
-      url: "https://drspathway.com/#packages",
-      description:
-        "Packages for licensing guidance: Basic, Standard, Premium. Add‑ons: one‑to‑one document review; mock tests.",
-    },
-    isAccessibleForFree: false,
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Packages",
-      itemListElement: [
-        {
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://drspathway.com/#org",
+        "name": "Drs Pathway",
+        "url": "https://drspathway.com/",
+        "logo": "https://drspathway.com/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/drspathway",
+          "https://www.facebook.com/share/14Qt2FGdB9b/",
+          "https://www.linkedin.com/company/drs-pathway"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://drspathway.com/#service",
+        "name": "Drs Pathway – Medical Licensing Guidance",
+        "url": "https://drspathway.com/",
+        "brand": "Drs Pathway",
+        "slogan": "Your trusted guide to medical registration in Saudi Arabia and the GCC",
+        "areaServed": [
+          { "@type": "Country", "name": "Saudi Arabia" },
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Qatar" },
+          { "@type": "Country", "name": "Oman" },
+          { "@type": "Country", "name": "Bahrain" },
+          { "@type": "Country", "name": "Kuwait" }
+        ],
+        "isAccessibleForFree": false,
+        "offers": {
           "@type": "Offer",
-          name: "Basic — Dataflow + Mumaris+ guidance",
-          priceCurrency: "SAR",
+          "category": "Consulting",
+          "url": "https://drspathway.com/#packages",
+          "description":
+            "Paid guidance for Dataflow verification, SCFHS Mumaris+ registration, exam registration and CHSI support."
         },
-        {
-          "@type": "Offer",
-          name: "Standard — + Prometric preparation",
-          priceCurrency: "SAR",
-        },
-        {
-          "@type": "Offer",
-          name: "Premium — Full support + Doc review + Mentorship",
-          priceCurrency: "SAR",
-        },
-      ],
-    },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Licensing guidance packages",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Basic — Dataflow + Mumaris+ guidance",
+              "priceCurrency": "SAR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Standard — Dataflow + Mumaris+ + exam registration",
+              "priceCurrency": "SAR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Premium — Full support, document review and mentorship",
+              "priceCurrency": "SAR"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://drspathway.com/#website",
+        "url": "https://drspathway.com/",
+        "name": "Drs Pathway",
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://drspathway.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
   };
 
   return (
     <html lang="en" className={inter.className}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-L32Y1ZQ221"
+        />
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-L32Y1ZQ221');
+            `,
+          }}
+        />
+
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <meta name="theme-color" content="#0B1424" />
       </head>
       <body>
+        <header
+          className="site-header"
+          role="banner"
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            background: "rgba(7, 11, 25, 0.96)",
+            backdropFilter: "blur(10px)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          }}
+        >
+          <div
+            className="shell header-row"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "14px 0",
+              gap: "20px",
+            }}
+          >
+            <a
+              href="/"
+              className="brand"
+              aria-label="Drs Pathway — Home"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                textDecoration: "none",
+                color: "#ffffff",
+                fontWeight: 800,
+              }}
+            >
+              <img
+                src="/logo.png"
+                width={40}
+                height={40}
+                alt="Drs Pathway logo"
+                className="logo-img"
+                style={{ borderRadius: "10px" }}
+              />
+              <span className="brand-text">Drs Pathway</span>
+            </a>
+
+            <nav
+              className="nav"
+              aria-label="Primary"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                href="/#home"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                Home
+              </a>
+              <a
+                href="/#about"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                About
+              </a>
+              <a
+                href="/#services"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                Services
+              </a>
+              <a
+                href="/#packages"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                Packages
+              </a>
+              <a
+                href="/#experts"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                Experts
+              </a>
+              <a
+                href="/#process"
+                style={{ color: "#ffffff", textDecoration: "none", fontWeight: 600 }}
+              >
+                How it works
+              </a>
+              <a
+                href="/#contact"
+                className="btn btn--primary"
+                style={{
+                  textDecoration: "none",
+                  padding: "0.55rem 1.2rem",
+                  borderRadius: "999px",
+                  fontWeight: 700,
+                  boxShadow: "0 0 30px rgba(76, 132, 255, 0.6)",
+                }}
+              >
+                Get started
+              </a>
+            </nav>
+          </div>
+        </header>
+
         {children}
+        <footer
+          className="site-footer"
+          style={{
+            padding: "24px 0 32px",
+            background: "#050815",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            marginTop: "40px",
+          }}
+        >
+          <div
+            className="shell"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+              color: "#9ca3af",
+              fontSize: "0.85rem",
+            }}
+          >
+            <span>© Drs Pathway. All rights reserved.</span>
+            <span>
+              Guidance &amp; documentation assistance — not a recruitment or licensing agency.
+            </span>
+          </div>
+        </footer>
       </body>
     </html>
   );

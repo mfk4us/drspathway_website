@@ -1,4 +1,6 @@
- "use client";
+
+
+"use client";
 import { useEffect, useState, useRef } from "react";
 /* Fresh, Tailwind-free single-file homepage for Drs Pathway
    - Pure CSS (styled-jsx) + semantic HTML
@@ -141,35 +143,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* ===== Header ===== */}
-      <header ref={headerRef} className="site-header" role="banner">
-        <div className="shell header-row">
-          <a href="#home" className="brand" aria-label="Drs Pathway — Home">
-            <img src="/logo.png" width={40} height={40} alt="Drs Pathway logo" className="logo-img" />
-            <span className="brand-text">Drs Pathway</span>
-          </a>
-
-          <button
-            ref={toggleRef}
-            className="nav-toggle"
-            aria-label="Toggle navigation"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
-          </button>
-
-          <nav ref={navRef} className={`nav ${menuOpen ? "open" : ""}`} aria-label="Primary">
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-            <a href="#packages" onClick={() => setMenuOpen(false)}>Packages</a>
-            <a href="#experts" onClick={() => setMenuOpen(false)}>Experts</a>
-            <a href="#process" onClick={() => setMenuOpen(false)}>How it works</a>
-            <a href="#contact" className="btn btn--primary" onClick={() => setMenuOpen(false)}>Get started</a>
-          </nav>
-        </div>
-      </header>
-
       {/* ===== Hero ===== */}
       <section id="home" className="hero" role="region" aria-labelledby="hero-title">
         {/* Background video */}
@@ -207,7 +180,7 @@ export default function Home() {
           </div>
 
           <aside className="hero-card reveal" aria-label="Introduction">
-            <h3>Intoduction</h3>
+            <h3>Introduction</h3>
             <p>
               We guide healthcare professionals through every step of Saudi medical licensing —
               from <b>Dataflow</b> and <b>SCFHS Mumaris+</b> to <b>Prometric</b> prep and <b>China Higher Education Student Information (CHSI) verification, </b> 
@@ -229,35 +202,61 @@ export default function Home() {
         <div className="shell">
           <h2 id="services-title">Our Services</h2>
           <div className="cards-3">
+            {/* Dataflow verification — dedicated card */}
             <article className="card reveal">
-              <h3 className="icon-title">
-                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6 4h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-                  <path d="M9 8h6M9 11h6"/>
-                </svg>
-                <span>Licensing Guidance</span>
-              </h3>
-              <ul className="list">
-                <li>Dataflow verification support</li>
-                <li>SCFHS Mumaris+ registration & licensing</li>
-                <li>Application follow‑up & issue resolution</li>
-              </ul>
+              <a href="/dataflow-verification" className="card-link" title="View full Dataflow verification support details">
+                <h3 className="icon-title">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 4h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+                    <path d="M9 8h6M9 11h6"/>
+                  </svg>
+                  <span>Dataflow Verification Support</span>
+                </h3>
+                <ul className="list">
+                  <li>End‑to‑end Dataflow case creation</li>
+                  <li>Document checklist &amp; preparation</li>
+                  <li>Follow‑up on verification &amp; issues</li>
+                </ul>
+              </a>
             </article>
+
+            {/* SCFHS Mumaris+ — dedicated card */}
             <article className="card reveal">
-              <h3 className="icon-title">
-                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M3 8l9-4 9 4-9 4-9-4z"/>
-                  <path d="M21 10v4c-2.5 2-6 3-9 3s-6.5-1-9-3v-4"/>
-                  <path d="M7 12v4"/>
-                </svg>
-                <span>Exam & Career Support</span>
-              </h3>
-              <ul className="list">
-                <li>Prometric exam guidance</li>
-                <li>Bi‑weekly online lectures</li>
-                <li>One‑to‑one mentoring</li>
-              </ul>
+              <a href="/scfhs-mumaris-licensing" className="card-link" title="View full SCFHS Mumaris+ registration &amp; licensing details">
+                <h3 className="icon-title">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 4h16v4H4z"/>
+                    <path d="M5 8h14v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8z"/>
+                    <path d="M9 12h6"/>
+                    <path d="M9 15h4"/>
+                  </svg>
+                  <span>SCFHS Mumaris+ Registration &amp; Licensing</span>
+                </h3>
+                <ul className="list">
+                  <li>Account setup &amp; profile completion</li>
+                  <li>Application submission and tracking</li>
+                  <li>Guidance on classification &amp; registration</li>
+                </ul>
+              </a>
             </article>
+
+            {/* CHSI card */}
+            <article className="card reveal">
+              <a href="/chsi-verification" className="card-link" title="View full CHSI verification guidance">
+                <h3 className="icon-title">
+                  <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M2.5 12h19"/>
+                    <path d="M12 3c3 3 3 15 0 18c-3-3-3-15 0-18z"/>
+                    <path d="M15 8v4h3"/>
+                  </svg>
+                  <span>China Higher Education Student Information (CHSI)</span>
+                </h3>
+                <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) verification.</p>
+              </a>
+            </article>
+
+            {/* One‑to‑One Document Review */}
             <article className="card reveal">
               <h3 className="icon-title">
                 <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
@@ -272,21 +271,25 @@ export default function Home() {
                 Includes checklist, corrections, and final pre‑submission verification.
               </p>
             </article>
-          </div>
-
-          <div className="cards-3 mt">
+            
+            {/* Exam & Career Support */}
             <article className="card reveal">
               <h3 className="icon-title">
                 <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M2.5 12h19"/>
-                  <path d="M12 3c3 3 3 15 0 18c-3-3-3-15 0-18z"/>
-                  <path d="M15 8v4h3"/>
+                  <path d="M3 8l9-4 9 4-9 4-9-4z"/>
+                  <path d="M21 10v4c-2.5 2-6 3-9 3s-6.5-1-9-3v-4"/>
+                  <path d="M7 12v4"/>
                 </svg>
-                <span>China Higher Education Student Information (CHSI) — coming soon</span>
+                <span>Exam &amp; Career Support</span>
               </h3>
-              <p>Guidance for Chinese graduates completing China Higher Education Student Information (CHSI) verification.</p>
+              <ul className="list">
+                <li>Prometric exam guidance</li>
+                <li>Bi‑weekly online lectures</li>
+                <li>One‑to‑one mentoring</li>
+              </ul>
             </article>
+
+            {/* Who We Serve */}
             <article className="card reveal">
               <h3 className="icon-title">
                 <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
@@ -298,25 +301,17 @@ export default function Home() {
                 <span>Who We Serve</span>
               </h3>
               <ul className="list">
-                <li>Junior & Senior Doctors</li>
+                <li>Junior &amp; Senior Doctors</li>
                 <li>Physiotherapists • Nurses • Pharmacists</li>
                 <li>Allied Health • International graduates</li>
               </ul>
             </article>
-            <article className="card reveal">
-              <h3 className="icon-title">
-                <svg className="i-stroke" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 19c-1.5-1.5 1-4 3-4 0 2.5-2.5 4-3 4z"/>
-                  <path d="M15 9l-6 6"/>
-                  <path d="M12 7l5-5 2 2-5 5-2-2z"/>
-                  <path d="M7 12l-2-2 5-5 2 2"/>
-                  <circle cx="18" cy="6" r="1.5"/>
-                </svg>
-                <span>Ready to begin?</span>
-              </h3>
-              <p>Book a one‑to‑one consultation and we’ll map your exact pathway.</p>
-              <a href="#contact" className="btn btn--primary">Book consultation</a>
-            </article>
+          </div>
+
+          <div className="mt" style={{ textAlign: "center" }}>
+            <a href="#contact" className="btn btn--primary" style={{ marginTop: "18px" }}>
+              Book consultation
+            </a>
           </div>
         </div>
       </section>
@@ -578,7 +573,7 @@ export default function Home() {
           <div className="founder-copy">
             <h2 id="about-title">About Dr’s Pathway</h2>
             <p>
-              Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — Graduated from <b>Shandong First Medical University</b>; trained at <b>Nishtar Hospital, Multan</b>, with further experience at <b>Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. <b>China Higher Education Student Information (CHSI)</b> support for Chinese graduates is launching soon.
+              Dr’s Pathway is led by <b>Dr. Saad Khan (MBBS)</b> — Graduated from <b>Shandong First Medical University</b>; trained at <b>Nishtar Hospital, Multan</b>, with further experience at <b>Saudi German Hospital, Jeddah</b>, and currently practicing in KSA. We provide clear, step‑by‑step guidance so healthcare professionals can complete <b>Dataflow</b>, <b>SCFHS Mumaris+</b>, and <b>Prometric</b> requirements with confidence. We also support <b>China Higher Education Student Information (CHSI)</b> verification for Chinese graduates.
             </p>
 
             <div className="badge-row">
@@ -680,7 +675,7 @@ export default function Home() {
                 What about Chinese graduates—do you support CHSI?
               </summary>
               <div className="answer">
-                <b>China Higher Education Student Information (CHSI)</b> support is coming soon. We’ll publish instructions and provide one‑to‑one assistance once live.
+                Yes. We support <b>China Higher Education Student Information (CHSI)</b> verification and can guide you step‑by‑step through the CHSI portal process, including Chinese and English report issuance and sending reports to Dataflow or other authorities.
               </div>
             </details>
           </div>
@@ -849,8 +844,33 @@ export default function Home() {
         html.reveal-ready .reveal.in { opacity: 1; transform: none; }
         /* Hero background animation */
         /* Card hover effect */
-        .card {
+        .card{
           transition: box-shadow .3s cubic-bezier(.37,.01,.63,.99), transform .13s cubic-bezier(.37,.01,.63,.99);
+        }
+        .card-link{
+          display:block;
+          color:inherit;
+          text-decoration:none;
+        }
+        .card-link:hover{
+          text-decoration:none;
+        }
+        /* Service cards with hover CTA */
+        .service-card{
+          position:relative;
+          overflow:hidden;
+        }
+        .service-cta{
+          margin-top:12px;
+          opacity:0;
+          transform:translateY(6px);
+          transition: opacity .2s ease, transform .2s ease;
+          pointer-events:none;
+        }
+        .service-card:hover .service-cta{
+          opacity:1;
+          transform:translateY(0);
+          pointer-events:auto;
         }
         .card:hover {
           box-shadow: 0 16px 40px -8px rgba(46,124,246,0.16);
@@ -1076,7 +1096,17 @@ export default function Home() {
 
         /* Hero */
         .hero{ position:relative; background: var(--grad-hero); padding:72px 0; overflow:hidden; }
-        .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0; transition: opacity .5s ease; pointer-events:none; }
+        .hero-video{
+          position:absolute;
+          inset:0;
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          z-index:0;
+          opacity:1; /* always visible so we can see if it loads/plays */
+          transition: opacity .5s ease;
+          pointer-events:none;
+        }
         .hero-video.show{ opacity:1; }
         .hero-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none; background:
           linear-gradient(180deg, rgba(5,10,20,.36) 0%, rgba(5,10,20,.48) 45%, rgba(5,10,20,.56) 100%);
@@ -1148,6 +1178,27 @@ export default function Home() {
         .cards-2{ display:grid; grid-template-columns:1fr; gap:16px; }
         @media(min-width: 800px){ .cards-3{ grid-template-columns: repeat(3, 1fr); } .cards-2{ grid-template-columns: repeat(2, 1fr); } }
         .mt{ margin-top: 18px; }
+
+        /* Second row of service cards — two centered blocks under the top row */
+        .services-bottom{
+          display:flex;
+          justify-content:center;
+          gap:16px;
+          margin-top:18px;
+          flex-wrap:wrap;
+        }
+        .services-bottom .card{
+          flex:0 1 340px; /* keep cards similar size to top row while allowing wrap */
+        }
+        @media(max-width: 800px){
+          .services-bottom{
+            flex-direction:column;
+            align-items:stretch;
+          }
+          .services-bottom .card{
+            flex:1 1 auto;
+          }
+        }
 
         /* Pricing */
         /* Why Us */
@@ -1252,11 +1303,12 @@ export default function Home() {
 
 
         @media(max-width: 520px){
+          .footer-bottom-row{ flex-direction: column; align-items: flex-start; gap:8px; }
+        }
+
         @media(max-width: 380px){
           .f-social{ gap:.6rem; }
           .f-social a{ width:36px; height:36px; border-radius:9px; }
-        }
-          .footer-bottom-row{ flex-direction: column; align-items: flex-start; gap:8px; }
         }
 
         /* Reduce motion */
