@@ -154,23 +154,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.className}>
       <head>
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <meta name="theme-color" content="#0B1424" />
-      </head>
-      <body>
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-L32Y1ZQ221"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
         <Script
           id="ga4-init"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: `
@@ -181,6 +172,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <meta name="theme-color" content="#0B1424" />
+      </head>
+      <body>
         <header
           className="site-header"
           role="banner"
