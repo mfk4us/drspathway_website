@@ -179,6 +179,68 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <style
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+              .site-header .mobile-nav-toggle {
+                display: none;
+              }
+
+              @media (max-width: 768px) {
+                .site-header .header-row {
+                  padding: 10px 0;
+                }
+                .site-header .brand-text {
+                  font-size: 0.95rem;
+                }
+                .site-header .mobile-nav-toggle {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 999px;
+                  border: 1px solid rgba(148, 163, 255, 0.6);
+                  padding: 6px 10px;
+                  background: rgba(15, 23, 42, 0.96);
+                  cursor: pointer;
+                  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+                }
+                .site-header .mobile-nav-toggle span {
+                  display: block;
+                  width: 18px;
+                  height: 2px;
+                  background: #e5e7eb;
+                  border-radius: 999px;
+                  box-shadow: 0 5px 0 #e5e7eb, 0 -5px 0 #e5e7eb;
+                }
+                .site-header .nav {
+                  display: none !important;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: 18px;
+                  width: 100%;
+                  padding: 16px 0 12px;
+                }
+                .site-header .nav.is-open {
+                  display: flex !important;
+                }
+                .site-header .nav a {
+                  width: 100%;
+                  text-align: left;
+                }
+              }
+
+              @media (min-width: 769px) {
+                .site-header .mobile-nav-toggle {
+                  display: none !important;
+                }
+                .site-header .nav {
+                  display: flex !important;
+                }
+              }
+            `,
+          }}
+        />
         <meta name="theme-color" content="#0B1424" />
       </head>
       <body>
@@ -228,11 +290,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="brand-text">Drs Pathway</span>
             </a>
 
+            <button
+              type="button"
+              className="mobile-nav-toggle"
+              aria-label="Toggle navigation"
+              aria-expanded="false"
+            >
+              <span />
+            </button>
+
             <nav
               className="nav"
               aria-label="Primary"
               style={{
-                display: "flex",
                 alignItems: "center",
                 gap: "20px",
                 flexWrap: "wrap",
@@ -319,6 +389,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </span>
           </div>
         </footer>
+        <Script
+          id="mobile-nav-toggle-init"
+          strategy="afterInteractive"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                try {
+                  if (typeof window === 'undefined') return;
+                  var header = document.querySelector('.site-header');
+                  if (!header) return;
+                  var toggle = header.querySelector('.mobile-nav-toggle');
+                  var nav = header.querySelector('.nav');
+                  if (!toggle || !nav) return;
+                  toggle.addEventListener('click', function () {
+                    var isOpen = nav.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                  });
+                } catch (e) {
+                  console.error('Mobile nav toggle error', e);
+                }
+              })();
+            `,
+          }}
+        />
       </body>
     </html>
   );
